@@ -1,0 +1,216 @@
+/* This file contains stub implementations of the AUTOSAR RTE functions.
+   The stub implementations can be used for testing the generated code in
+   Simulink, for example, in SIL/PIL simulations of the component under
+   test. Note that this file should be replaced with an appropriate RTE
+   file when deploying the generated code outside of Simulink.
+
+   This file is generated for:
+   Atomic software component:  "DHM"
+   ARXML schema: "4.3"
+   File generated on: "26-Aug-2023 03:25:07"  */
+
+#ifndef Rte_DHM_h
+#define Rte_DHM_h
+#include "Rte_Type.h"
+#include "Compiler.h"
+
+/* Data access functions */
+#define Rte_Read_VbINP_CAN_EspVehSpdVld_flg_VbINP_CAN_EspVehSpdVld_flg Rte_Read_DHM_VbINP_CAN_EspVehSpdVld_flg_VbINP_CAN_EspVehSpdVld_flg
+
+Std_ReturnType Rte_Read_VbINP_CAN_EspVehSpdVld_flg_VbINP_CAN_EspVehSpdVld_flg
+  (Boolean* u);
+
+#define Rte_Read_VbINP_CAN_VcuRdySts_flg_VbINP_CAN_VcuRdySts_flg Rte_Read_DHM_VbINP_CAN_VcuRdySts_flg_VbINP_CAN_VcuRdySts_flg
+
+Std_ReturnType Rte_Read_VbINP_CAN_VcuRdySts_flg_VbINP_CAN_VcuRdySts_flg(Boolean*
+  u);
+
+#define Rte_Read_VbINP_HWA_FLDoorAjar_flg_VbINP_HWA_FLDoorAjar_flg Rte_Read_DHM_VbINP_HWA_FLDoorAjar_flg_VbINP_HWA_FLDoorAjar_flg
+
+Std_ReturnType Rte_Read_VbINP_HWA_FLDoorAjar_flg_VbINP_HWA_FLDoorAjar_flg
+  (Boolean* u);
+
+#define Rte_Read_VbINP_HWA_FLHadPos1_flg_VbINP_HWA_FLHadPos1_flg Rte_Read_DHM_VbINP_HWA_FLHadPos1_flg_VbINP_HWA_FLHadPos1_flg
+
+Std_ReturnType Rte_Read_VbINP_HWA_FLHadPos1_flg_VbINP_HWA_FLHadPos1_flg(Boolean*
+  u);
+
+#define Rte_Read_VbINP_HWA_FLHadPos2_flg_VbINP_HWA_FLHadPos2_flg Rte_Read_DHM_VbINP_HWA_FLHadPos2_flg_VbINP_HWA_FLHadPos2_flg
+
+Std_ReturnType Rte_Read_VbINP_HWA_FLHadPos2_flg_VbINP_HWA_FLHadPos2_flg(Boolean*
+  u);
+
+#define Rte_Read_VbINP_HWA_FLLockSts_flg_VbINP_HWA_FLLockSts_flg Rte_Read_DHM_VbINP_HWA_FLLockSts_flg_VbINP_HWA_FLLockSts_flg
+
+Std_ReturnType Rte_Read_VbINP_HWA_FLLockSts_flg_VbINP_HWA_FLLockSts_flg(Boolean*
+  u);
+
+#define Rte_Read_VbINP_HWA_FRDoorAjar_flg_VbINP_HWA_FRDoorAjar_flg Rte_Read_DHM_VbINP_HWA_FRDoorAjar_flg_VbINP_HWA_FRDoorAjar_flg
+
+Std_ReturnType Rte_Read_VbINP_HWA_FRDoorAjar_flg_VbINP_HWA_FRDoorAjar_flg
+  (Boolean* u);
+
+#define Rte_Read_VbINP_HWA_FRHadPos1_flg_VbINP_HWA_FRHadPos1_flg Rte_Read_DHM_VbINP_HWA_FRHadPos1_flg_VbINP_HWA_FRHadPos1_flg
+
+Std_ReturnType Rte_Read_VbINP_HWA_FRHadPos1_flg_VbINP_HWA_FRHadPos1_flg(Boolean*
+  u);
+
+#define Rte_Read_VbINP_HWA_FRHadPos2_flg_VbINP_HWA_FRHadPos2_flg Rte_Read_DHM_VbINP_HWA_FRHadPos2_flg_VbINP_HWA_FRHadPos2_flg
+
+Std_ReturnType Rte_Read_VbINP_HWA_FRHadPos2_flg_VbINP_HWA_FRHadPos2_flg(Boolean*
+  u);
+
+#define Rte_Read_VbINP_HWA_FRLockSts_flg_VbINP_HWA_FRLockSts_flg Rte_Read_DHM_VbINP_HWA_FRLockSts_flg_VbINP_HWA_FRLockSts_flg
+
+Std_ReturnType Rte_Read_VbINP_HWA_FRLockSts_flg_VbINP_HWA_FRLockSts_flg(Boolean*
+  u);
+
+#define Rte_Read_VbINP_HWA_RLDoorAjar_flg_VbINP_HWA_RLDoorAjar_flg Rte_Read_DHM_VbINP_HWA_RLDoorAjar_flg_VbINP_HWA_RLDoorAjar_flg
+
+Std_ReturnType Rte_Read_VbINP_HWA_RLDoorAjar_flg_VbINP_HWA_RLDoorAjar_flg
+  (Boolean* u);
+
+#define Rte_Read_VbINP_HWA_RLHadPos1_flg_VbINP_HWA_RLHadPos1_flg Rte_Read_DHM_VbINP_HWA_RLHadPos1_flg_VbINP_HWA_RLHadPos1_flg
+
+Std_ReturnType Rte_Read_VbINP_HWA_RLHadPos1_flg_VbINP_HWA_RLHadPos1_flg(Boolean*
+  u);
+
+#define Rte_Read_VbINP_HWA_RLHadPos2_flg_VbINP_HWA_RLHadPos2_flg Rte_Read_DHM_VbINP_HWA_RLHadPos2_flg_VbINP_HWA_RLHadPos2_flg
+
+Std_ReturnType Rte_Read_VbINP_HWA_RLHadPos2_flg_VbINP_HWA_RLHadPos2_flg(Boolean*
+  u);
+
+#define Rte_Read_VbINP_HWA_RRDoorAjar_flg_VbINP_HWA_RRDoorAjar_flg Rte_Read_DHM_VbINP_HWA_RRDoorAjar_flg_VbINP_HWA_RRDoorAjar_flg
+
+Std_ReturnType Rte_Read_VbINP_HWA_RRDoorAjar_flg_VbINP_HWA_RRDoorAjar_flg
+  (Boolean* u);
+
+#define Rte_Read_VbINP_HWA_RRHadPos1_flg_VbINP_HWA_RRHadPos1_flg Rte_Read_DHM_VbINP_HWA_RRHadPos1_flg_VbINP_HWA_RRHadPos1_flg
+
+Std_ReturnType Rte_Read_VbINP_HWA_RRHadPos1_flg_VbINP_HWA_RRHadPos1_flg(Boolean*
+  u);
+
+#define Rte_Read_VbINP_HWA_RRHadPos2_flg_VbINP_HWA_RRHadPos2_flg Rte_Read_DHM_VbINP_HWA_RRHadPos2_flg_VbINP_HWA_RRHadPos2_flg
+
+Std_ReturnType Rte_Read_VbINP_HWA_RRHadPos2_flg_VbINP_HWA_RRHadPos2_flg(Boolean*
+  u);
+
+#define Rte_Read_VbOUT_SP_CrashOutpSts_flg_VbOUT_SP_CrashOutpSts_flg Rte_Read_DHM_VbOUT_SP_CrashOutpSts_flg_VbOUT_SP_CrashOutpSts_flg
+
+Std_ReturnType Rte_Read_VbOUT_SP_CrashOutpSts_flg_VbOUT_SP_CrashOutpSts_flg
+  (Boolean* u);
+
+#define Rte_Read_VeINP_CAN_VcuGearPosn_sig_VeINP_CAN_VcuGearPosn_sig Rte_Read_DHM_VeINP_CAN_VcuGearPosn_sig_VeINP_CAN_VcuGearPosn_sig
+
+Std_ReturnType Rte_Read_VeINP_CAN_VcuGearPosn_sig_VeINP_CAN_VcuGearPosn_sig
+  (UInt8* u);
+
+#define Rte_Read_VeOUT_DLK_BCMPassengerDoorLockStatus_sig_VeOUT_DLK_BCMPassengerDoorLockStatus_sig Rte_Read_DHM_VeOUT_DLK_BCMPassengerDoorLockStatus_sig_VeOUT_DLK_BCMPassengerDoorLockStatus_sig
+
+Std_ReturnType
+  Rte_Read_VeOUT_DLK_BCMPassengerDoorLockStatus_sig_VeOUT_DLK_BCMPassengerDoorLockStatus_sig
+  (UInt8* u);
+
+#define Rte_Read_VeOUT_DLK_BdcDrvrDoorLockSts_sig_VeOUT_DLK_BdcDrvrDoorLockSts_sig Rte_Read_DHM_VeOUT_DLK_BdcDrvrDoorLockSts_sig_VeOUT_DLK_BdcDrvrDoorLockSts_sig
+
+Std_ReturnType
+  Rte_Read_VeOUT_DLK_BdcDrvrDoorLockSts_sig_VeOUT_DLK_BdcDrvrDoorLockSts_sig
+  (UInt8* u);
+
+#define Rte_Read_VeOUT_SP_EspVehSpd_kmh_VeOUT_SP_EspVehSpd_kmh Rte_Read_DHM_VeOUT_SP_EspVehSpd_kmh_VeOUT_SP_EspVehSpd_kmh
+
+Std_ReturnType Rte_Read_VeOUT_SP_EspVehSpd_kmh_VeOUT_SP_EspVehSpd_kmh(UInt8* u);
+
+#define Rte_Write_VbOUT_DHM_FLHadUnfold_flg_VbOUT_DHM_FLHadUnfold_flg Rte_Write_DHM_VbOUT_DHM_FLHadUnfold_flg_VbOUT_DHM_FLHadUnfold_flg
+
+Std_ReturnType Rte_Write_VbOUT_DHM_FLHadUnfold_flg_VbOUT_DHM_FLHadUnfold_flg
+  (Boolean u);
+
+#define Rte_Invalidate_VbOUT_DHM_FLHadUnfold_flg_VbOUT_DHM_FLHadUnfold_flg Rte_Invalidate_DHM_VbOUT_DHM_FLHadUnfold_flg_VbOUT_DHM_FLHadUnfold_flg
+
+Std_ReturnType
+  Rte_Invalidate_VbOUT_DHM_FLHadUnfold_flg_VbOUT_DHM_FLHadUnfold_flg(void);
+
+#define Rte_Write_VbOUT_DHM_FLHadFold_flg_VbOUT_DHM_FLHadFold_flg Rte_Write_DHM_VbOUT_DHM_FLHadFold_flg_VbOUT_DHM_FLHadFold_flg
+
+Std_ReturnType Rte_Write_VbOUT_DHM_FLHadFold_flg_VbOUT_DHM_FLHadFold_flg(Boolean
+  u);
+
+#define Rte_Invalidate_VbOUT_DHM_FLHadFold_flg_VbOUT_DHM_FLHadFold_flg Rte_Invalidate_DHM_VbOUT_DHM_FLHadFold_flg_VbOUT_DHM_FLHadFold_flg
+
+Std_ReturnType Rte_Invalidate_VbOUT_DHM_FLHadFold_flg_VbOUT_DHM_FLHadFold_flg
+  (void);
+
+#define Rte_Write_VbOUT_DHM_HandleUnfold_flg_VbOUT_DHM_HandleUnfold_flg Rte_Write_DHM_VbOUT_DHM_HandleUnfold_flg_VbOUT_DHM_HandleUnfold_flg
+
+Std_ReturnType Rte_Write_VbOUT_DHM_HandleUnfold_flg_VbOUT_DHM_HandleUnfold_flg
+  (Boolean u);
+
+#define Rte_Invalidate_VbOUT_DHM_HandleUnfold_flg_VbOUT_DHM_HandleUnfold_flg Rte_Invalidate_DHM_VbOUT_DHM_HandleUnfold_flg_VbOUT_DHM_HandleUnfold_flg
+
+Std_ReturnType
+  Rte_Invalidate_VbOUT_DHM_HandleUnfold_flg_VbOUT_DHM_HandleUnfold_flg(void);
+
+#define Rte_Write_VbOUT_DHM_HandleFold_flg_VbOUT_DHM_HandleFold_flg Rte_Write_DHM_VbOUT_DHM_HandleFold_flg_VbOUT_DHM_HandleFold_flg
+
+Std_ReturnType Rte_Write_VbOUT_DHM_HandleFold_flg_VbOUT_DHM_HandleFold_flg
+  (Boolean u);
+
+#define Rte_Invalidate_VbOUT_DHM_HandleFold_flg_VbOUT_DHM_HandleFold_flg Rte_Invalidate_DHM_VbOUT_DHM_HandleFold_flg_VbOUT_DHM_HandleFold_flg
+
+Std_ReturnType Rte_Invalidate_VbOUT_DHM_HandleFold_flg_VbOUT_DHM_HandleFold_flg
+  (void);
+
+#define Rte_Write_VeOUT_DHM_BDCDrvrDoorHndSts_sig_VeOUT_DHM_BDCDrvrDoorHndSts_sig Rte_Write_DHM_VeOUT_DHM_BDCDrvrDoorHndSts_sig_VeOUT_DHM_BDCDrvrDoorHndSts_sig
+
+Std_ReturnType
+  Rte_Write_VeOUT_DHM_BDCDrvrDoorHndSts_sig_VeOUT_DHM_BDCDrvrDoorHndSts_sig
+  (UInt8 u);
+
+#define Rte_Invalidate_VeOUT_DHM_BDCDrvrDoorHndSts_sig_VeOUT_DHM_BDCDrvrDoorHndSts_sig Rte_Invalidate_DHM_VeOUT_DHM_BDCDrvrDoorHndSts_sig_VeOUT_DHM_BDCDrvrDoorHndSts_sig
+
+Std_ReturnType
+  Rte_Invalidate_VeOUT_DHM_BDCDrvrDoorHndSts_sig_VeOUT_DHM_BDCDrvrDoorHndSts_sig
+  (void);
+
+#define Rte_Write_VeOUT_DHM_BDCPassDoorHndSts_sig_VeOUT_DHM_BDCPassDoorHndSts_sig Rte_Write_DHM_VeOUT_DHM_BDCPassDoorHndSts_sig_VeOUT_DHM_BDCPassDoorHndSts_sig
+
+Std_ReturnType
+  Rte_Write_VeOUT_DHM_BDCPassDoorHndSts_sig_VeOUT_DHM_BDCPassDoorHndSts_sig
+  (UInt8 u);
+
+#define Rte_Invalidate_VeOUT_DHM_BDCPassDoorHndSts_sig_VeOUT_DHM_BDCPassDoorHndSts_sig Rte_Invalidate_DHM_VeOUT_DHM_BDCPassDoorHndSts_sig_VeOUT_DHM_BDCPassDoorHndSts_sig
+
+Std_ReturnType
+  Rte_Invalidate_VeOUT_DHM_BDCPassDoorHndSts_sig_VeOUT_DHM_BDCPassDoorHndSts_sig
+  (void);
+
+#define Rte_Write_VeOUT_DHM_BDCLeReDoorHndSts_sig_VeOUT_DHM_BDCLeReDoorHndSts_sig Rte_Write_DHM_VeOUT_DHM_BDCLeReDoorHndSts_sig_VeOUT_DHM_BDCLeReDoorHndSts_sig
+
+Std_ReturnType
+  Rte_Write_VeOUT_DHM_BDCLeReDoorHndSts_sig_VeOUT_DHM_BDCLeReDoorHndSts_sig
+  (UInt8 u);
+
+#define Rte_Invalidate_VeOUT_DHM_BDCLeReDoorHndSts_sig_VeOUT_DHM_BDCLeReDoorHndSts_sig Rte_Invalidate_DHM_VeOUT_DHM_BDCLeReDoorHndSts_sig_VeOUT_DHM_BDCLeReDoorHndSts_sig
+
+Std_ReturnType
+  Rte_Invalidate_VeOUT_DHM_BDCLeReDoorHndSts_sig_VeOUT_DHM_BDCLeReDoorHndSts_sig
+  (void);
+
+#define Rte_Write_VeOUT_DHM_BDCRiReDoorHndSts_sig_VeOUT_DHM_BDCRiReDoorHndSts_sig Rte_Write_DHM_VeOUT_DHM_BDCRiReDoorHndSts_sig_VeOUT_DHM_BDCRiReDoorHndSts_sig
+
+Std_ReturnType
+  Rte_Write_VeOUT_DHM_BDCRiReDoorHndSts_sig_VeOUT_DHM_BDCRiReDoorHndSts_sig
+  (UInt8 u);
+
+#define Rte_Invalidate_VeOUT_DHM_BDCRiReDoorHndSts_sig_VeOUT_DHM_BDCRiReDoorHndSts_sig Rte_Invalidate_DHM_VeOUT_DHM_BDCRiReDoorHndSts_sig_VeOUT_DHM_BDCRiReDoorHndSts_sig
+
+Std_ReturnType
+  Rte_Invalidate_VeOUT_DHM_BDCRiReDoorHndSts_sig_VeOUT_DHM_BDCRiReDoorHndSts_sig
+  (void);
+
+/* Entry point functions */
+extern FUNC(void, DHM_CODE) DHM_Init(void);
+extern FUNC(void, DHM_CODE) DHM_Step(void);
+
+#endif
