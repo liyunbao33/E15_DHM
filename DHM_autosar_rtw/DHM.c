@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'DHM'.
  *
- * Model version                  : 1.12
+ * Model version                  : 1.13
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Sat Aug 26 03:24:56 2023
+ * C/C++ source code generated on : Sat Sep  2 08:17:27 2023
  *
  * Target selection: autosar.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -48,6 +48,7 @@ static boolean DHM_RRFold(void);
 static boolean DHM_FRFold(void);
 static void DHM_OUTPUT_STATUS(void);
 static void DHM_FOLD_HANDLER(void);
+static void DHM_enter_internal_c4_DHM(void);
 
 /* Function for Chart: '<S3>/PASSENGER_DOOR_HANDLES' */
 static boolean DHM_RLUnfold(void)
@@ -316,7 +317,8 @@ static void DHM_OUTPUT_STATUS(void)
     break;
 
    case DHM_IN_HALF_OPEN:
-    if (tmpRead_1 && tmpRead_2 && (DHM_DW.is_FOLD_ACT == DHM_IN_ACTIVE)) {
+    tmpRead = (tmpRead_1 && (!tmpRead_2));
+    if (tmpRead && (DHM_DW.is_FOLD_ACT == DHM_IN_ACTIVE)) {
       /* FOLDING */
       DHM_DW.is_OUTPUT_RL = DHM_IN_FOLDING;
       DHM_DW.temporalCounter_i4 = 0U;
@@ -324,8 +326,7 @@ static void DHM_OUTPUT_STATUS(void)
       DHM_DW.SL_b_RLHalfClose = false;
       DHM_DW.SL_b_RLHalfOpen = false;
       DHM_DW.SL_b_RLFullyOpen = false;
-    } else if (tmpRead_1 && (!tmpRead_2) && (DHM_DW.is_UNFOLD_ACT ==
-                DHM_IN_ACTIVE)) {
+    } else if (tmpRead && (DHM_DW.is_UNFOLD_ACT == DHM_IN_ACTIVE)) {
       /* UNFOLDING */
       DHM_DW.is_OUTPUT_RL = DHM_IN_UNFOLDING;
       DHM_DW.SL_e_BDCLeReDoorHndSts = 2U;
@@ -412,7 +413,8 @@ static void DHM_OUTPUT_STATUS(void)
     break;
 
    case DHM_IN_HALF_OPEN:
-    if (tmpRead_3 && tmpRead_4 && (DHM_DW.is_FOLD_ACT == DHM_IN_ACTIVE)) {
+    tmpRead = (tmpRead_3 && (!tmpRead_4));
+    if (tmpRead && (DHM_DW.is_FOLD_ACT == DHM_IN_ACTIVE)) {
       /* FOLDING */
       DHM_DW.is_OUTPUT_RR = DHM_IN_FOLDING;
       DHM_DW.temporalCounter_i5 = 0U;
@@ -420,8 +422,7 @@ static void DHM_OUTPUT_STATUS(void)
       DHM_DW.SL_b_RRHalfClose = false;
       DHM_DW.SL_b_RRHalfOpen = false;
       DHM_DW.SL_b_RRFullyOpen = false;
-    } else if (tmpRead_3 && (!tmpRead_4) && (DHM_DW.is_UNFOLD_ACT ==
-                DHM_IN_ACTIVE)) {
+    } else if (tmpRead && (DHM_DW.is_UNFOLD_ACT == DHM_IN_ACTIVE)) {
       /* UNFOLDING */
       DHM_DW.is_OUTPUT_RR = DHM_IN_UNFOLDING;
       DHM_DW.SL_e_BDCRiReDoorHndSts = 2U;
@@ -482,6 +483,25 @@ static void DHM_FOLD_HANDLER(void)
       DHM_DW.SL_b_RRHalfClose = false;
     }
   }
+}
+
+/* Function for Chart: '<S3>/PASSENGER_DOOR_HANDLES' */
+static void DHM_enter_internal_c4_DHM(void)
+{
+  DHM_DW.is_UNFOLD_ACT = DHM_IN_INACTIVE;
+  DHM_B.SO_b_HandleUnfold = false;
+  DHM_DW.is_FOLD_ACT = DHM_IN_INACTIVE;
+  DHM_B.SO_b_HandleFold = false;
+  DHM_DW.is_FR = DHM_IN_OFF;
+  DHM_DW.is_RL = DHM_IN_OFF;
+  DHM_DW.is_RR = DHM_IN_OFF;
+  DHM_DW.is_OUTPUT_FR = DHM_IN_FULL_CLOSE;
+  DHM_DW.SL_e_BDCPassDoorHndSts = 0U;
+  DHM_DW.is_OUTPUT_RL = DHM_IN_FULL_CLOSE;
+  DHM_DW.SL_e_BDCLeReDoorHndSts = 0U;
+  DHM_DW.is_OUTPUT_RR = DHM_IN_FULL_CLOSE;
+  DHM_DW.SL_e_BDCRiReDoorHndSts = 0U;
+  DHM_DW.is_FOLD_SLEEP_PERMIT = DHM_IN_INIT;
 }
 
 /* Model step function for TID1 */
@@ -884,20 +904,7 @@ void DHM_Step(void)                    /* Explicit Task: DHM_Step */
     DHM_DW.SI_e_BcmPassDoorLckSts_prev = DHM_B.TmpSignalConversionAtVeOUT_DL_l;
     DHM_DW.SI_e_BcmDrvrDoorLckSts_prev = DHM_B.TmpSignalConversionAtVeOUT_DLK_;
     DHM_DW.is_active_c4_DHM = 1U;
-    DHM_DW.is_UNFOLD_ACT = DHM_IN_INACTIVE;
-    DHM_B.SO_b_HandleUnfold = false;
-    DHM_DW.is_FOLD_ACT = DHM_IN_INACTIVE;
-    DHM_B.SO_b_HandleFold = false;
-    DHM_DW.is_FR = DHM_IN_OFF;
-    DHM_DW.is_RL = DHM_IN_OFF;
-    DHM_DW.is_RR = DHM_IN_OFF;
-    DHM_DW.is_OUTPUT_FR = DHM_IN_FULL_CLOSE;
-    DHM_DW.SL_e_BDCPassDoorHndSts = 0U;
-    DHM_DW.is_OUTPUT_RL = DHM_IN_FULL_CLOSE;
-    DHM_DW.SL_e_BDCLeReDoorHndSts = 0U;
-    DHM_DW.is_OUTPUT_RR = DHM_IN_FULL_CLOSE;
-    DHM_DW.SL_e_BDCRiReDoorHndSts = 0U;
-    DHM_DW.is_FOLD_SLEEP_PERMIT = DHM_IN_INIT;
+    DHM_enter_internal_c4_DHM();
   } else {
     (void)Rte_Read_VbINP_HWA_RRHadPos1_flg_VbINP_HWA_RRHadPos1_flg(&tmpRead_b);
     (void)Rte_Read_VbINP_HWA_RLHadPos1_flg_VbINP_HWA_RLHadPos1_flg(&tmpRead_9);
@@ -959,7 +966,11 @@ void DHM_Step(void)                    /* Explicit Task: DHM_Step */
       DHM_B.SO_b_HandleUnfold = true;
     }
 
-    if (DHM_DW.is_FOLD_ACT == DHM_IN_ACTIVE) {
+    if ((DHM_DW.SI_b_CrashOutpSts_prev != DHM_DW.SI_b_CrashOutpSts_start) &&
+        DHM_DW.SI_b_CrashOutpSts_start) {
+      DHM_DW.is_FOLD_ACT = DHM_IN_INACTIVE;
+      DHM_B.SO_b_HandleFold = false;
+    } else if (DHM_DW.is_FOLD_ACT == DHM_IN_ACTIVE) {
       guard1 = false;
       if (DHM_DW.SL_b_FOLD) {
         DHM_DW.SL_b_FOLD = false;
