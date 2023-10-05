@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'DHM'.
  *
- * Model version                  : 1.72
+ * Model version                  : 1.77
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Thu Oct  5 16:53:22 2023
+ * C/C++ source code generated on : Thu Oct  5 20:22:22 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -48,10 +48,10 @@ typedef struct {
   uint8_T is_SoftStartStop_m;          /* '<S3>/FLDoorHndDriver' */
   uint8_T SL_e_CycleCount;             /* '<S3>/FLDoorHndDriver' */
   uint8_T temporalCounter_i5;          /* '<S3>/FLDoorHndDriver' */
-  boolean_T SI_b_DoorHndFoldReq_prev;  /* '<S3>/FLDoorHndDriver' */
-  boolean_T SI_b_DoorHndFoldReq_start; /* '<S3>/FLDoorHndDriver' */
   boolean_T SI_b_DoorHndUnfoldReq_prev;/* '<S3>/FLDoorHndDriver' */
   boolean_T SI_b_DoorHndUnfoldReq_start;/* '<S3>/FLDoorHndDriver' */
+  boolean_T SI_b_DoorHndFoldReq_prev;  /* '<S3>/FLDoorHndDriver' */
+  boolean_T SI_b_DoorHndFoldReq_start; /* '<S3>/FLDoorHndDriver' */
 } DW_FLDoorHndDriver_DHM_T;
 
 /* Block states (default storage) for system '<S3>/FLDoorHndReq' */
@@ -78,11 +78,11 @@ typedef struct {
   uint8_T SO_e_MotorCmd;               /* '<S3>/RRDoorHndDriver' */
   uint8_T SO_e_MotorPwm;               /* '<S3>/RRDoorHndDriver' */
   uint8_T SO_e_MotorCmd_o;             /* '<S3>/RLDoorHndDriver' */
-  uint8_T SO_e_MotorPwm_c;             /* '<S3>/RLDoorHndDriver' */
+  uint8_T SO_e_MotorPwm_h;             /* '<S3>/RLDoorHndDriver' */
   uint8_T SO_e_MotorCmd_m;             /* '<S3>/FRDoorHndDriver' */
-  uint8_T SO_e_MotorPwm_g;             /* '<S3>/FRDoorHndDriver' */
+  uint8_T SO_e_MotorPwm_c;             /* '<S3>/FRDoorHndDriver' */
   uint8_T SO_e_MotorCmd_p;             /* '<S3>/FLDoorHndDriver' */
-  uint8_T SO_e_MotorPwm_i;             /* '<S3>/FLDoorHndDriver' */
+  uint8_T SO_e_MotorPwm_l;             /* '<S3>/FLDoorHndDriver' */
   boolean_T SO_b_HndUnfoldReq;         /* '<S3>/RRDoorHndReq' */
   boolean_T SO_b_HndFoldReq;           /* '<S3>/RRDoorHndReq' */
   boolean_T SO_b_HndUnfoldReq_l;       /* '<S3>/RLDoorHndReq' */

@@ -105,20 +105,6 @@
       SrcLocation  ""\
     }\
     ChartData {\
-      Name         "SI_b_DoorHndFoldReq_prev"\
-      Description  "ChangeDetectionDoubleBuffer"\
-      SFName       ""\
-      Path         "SI_b_DoorHndFoldReq"\
-      SrcLocation  ""\
-    }\
-    ChartData {\
-      Name         "SI_b_DoorHndFoldReq_start"\
-      Description  "ChangeDetectionDoubleBuffer"\
-      SFName       ""\
-      Path         "SI_b_DoorHndFoldReq"\
-      SrcLocation  ""\
-    }\
-    ChartData {\
       Name         "SI_b_DoorHndUnfoldReq_prev"\
       Description  "ChangeDetectionDoubleBuffer"\
       SFName       ""\
@@ -130,6 +116,20 @@
       Description  "ChangeDetectionDoubleBuffer"\
       SFName       ""\
       Path         "SI_b_DoorHndUnfoldReq"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "SI_b_DoorHndFoldReq_prev"\
+      Description  "ChangeDetectionDoubleBuffer"\
+      SFName       ""\
+      Path         "SI_b_DoorHndFoldReq"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "SI_b_DoorHndFoldReq_start"\
+      Description  "ChangeDetectionDoubleBuffer"\
+      SFName       ""\
+      Path         "SI_b_DoorHndFoldReq"\
       SrcLocation  ""\
     }\
   }
