@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'DHM'.
  *
- * Model version                  : 1.77
+ * Model version                  : 1.78
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Thu Oct  5 20:22:22 2023
+ * C/C++ source code generated on : Thu Oct  5 22:19:56 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -23,7 +23,7 @@
 extern void DHM_FLDoorHndDriver_Init(boolean_T *rty_SO_b_MotorA, boolean_T
   *rty_SO_b_MotorB, uint8_T *rty_SO_e_MotorCmd, uint8_T *rty_SO_e_MotorPwm,
   boolean_T *rty_SO_b_Error);
-extern void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_VoltAD, HndPos_Sts_E
+extern void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
   rtu_SI_m_DoorHndPosSts, boolean_T rtu_SI_b_DoorHndFoldReq, boolean_T
   rtu_SI_b_DoorHndUnfoldReq, boolean_T *rty_SO_b_MotorA, boolean_T
   *rty_SO_b_MotorB, uint8_T *rty_SO_e_MotorCmd, uint8_T *rty_SO_e_MotorPwm,

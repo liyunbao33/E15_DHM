@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'DHM'.
  *
- * Model version                  : 1.77
+ * Model version                  : 1.78
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Thu Oct  5 20:22:22 2023
+ * C/C++ source code generated on : Thu Oct  5 22:19:56 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -66,11 +66,11 @@ static RT_MODEL_DHM_T DHM_M_;
 RT_MODEL_DHM_T *const DHM_M = &DHM_M_;
 
 /* Forward declaration for local functions */
-static real_T DHM_GetPwm_j(real_T x, UInt8 rtu_SI_e_VoltAD);
-static real_T DHM_LinPwmStepTime_p(real_T t, UInt8 rtu_SI_e_VoltAD);
-static real_T DHM_GetPwm(real_T x, UInt8 rtu_SI_e_VoltAD);
-static real_T DHM_LinPwmStepTime(real_T t, UInt8 rtu_SI_e_VoltAD);
-static void DHM_Unfold(UInt8 rtu_SI_e_VoltAD, HndPos_Sts_E
+static real_T DHM_GetPwm_j(real_T x, UInt8 rtu_SI_e_Volt100mV);
+static real_T DHM_LinPwmStepTime_p(real_T t, UInt8 rtu_SI_e_Volt100mV);
+static real_T DHM_GetPwm(real_T x, UInt8 rtu_SI_e_Volt100mV);
+static real_T DHM_LinPwmStepTime(real_T t, UInt8 rtu_SI_e_Volt100mV);
+static void DHM_Unfold(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
   rtu_SI_m_DoorHndPosSts, boolean_T *rty_SO_b_MotorA, boolean_T *rty_SO_b_MotorB,
   uint8_T *rty_SO_e_MotorCmd, uint8_T *rty_SO_e_MotorPwm, boolean_T
   *rty_SO_b_Error, DW_FLDoorHndDriver_DHM_T *localDW);
@@ -84,10 +84,10 @@ static void DH_inner_default_PassDoorHndSet(const uint8_T
   *SI_e_PassDoorHndSet_prev);
 
 /* Function for Chart: '<S3>/FLDoorHndDriver' */
-static real_T DHM_GetPwm_j(real_T x, UInt8 rtu_SI_e_VoltAD)
+static real_T DHM_GetPwm_j(real_T x, UInt8 rtu_SI_e_Volt100mV)
 {
   real_T y;
-  y = x * 100.0 / (real_T)rtu_SI_e_VoltAD;
+  y = x * 100.0 / (real_T)rtu_SI_e_Volt100mV;
 
   /*  扩大100倍，浮点转整型  */
   if (y > 100.0) {
@@ -98,13 +98,13 @@ static real_T DHM_GetPwm_j(real_T x, UInt8 rtu_SI_e_VoltAD)
 }
 
 /* Function for Chart: '<S3>/FLDoorHndDriver' */
-static real_T DHM_LinPwmStepTime_p(real_T t, UInt8 rtu_SI_e_VoltAD)
+static real_T DHM_LinPwmStepTime_p(real_T t, UInt8 rtu_SI_e_Volt100mV)
 {
   real_T y;
+  y = t / (DHM_GetPwm_j(120.0, rtu_SI_e_Volt100mV) - DHM_GetPwm_j(70.0,
+            rtu_SI_e_Volt100mV));
 
-  /*    */
-  y = (t * 10.0 / (DHM_GetPwm_j(139.0, rtu_SI_e_VoltAD) - DHM_GetPwm_j(77.0,
-         rtu_SI_e_VoltAD)) + 5.0) / 10.0;
+  /*  时间t按PWM区间差值等分(单位:100mV)  */
   if (y == 0.0) {
     y = 1.0;
   }
@@ -113,10 +113,10 @@ static real_T DHM_LinPwmStepTime_p(real_T t, UInt8 rtu_SI_e_VoltAD)
 }
 
 /* Function for Chart: '<S3>/FLDoorHndDriver' */
-static real_T DHM_GetPwm(real_T x, UInt8 rtu_SI_e_VoltAD)
+static real_T DHM_GetPwm(real_T x, UInt8 rtu_SI_e_Volt100mV)
 {
   real_T y;
-  y = x * 100.0 / (real_T)rtu_SI_e_VoltAD;
+  y = x * 100.0 / (real_T)rtu_SI_e_Volt100mV;
   if (y > 100.0) {
     y = 100.0;
   }
@@ -125,20 +125,22 @@ static real_T DHM_GetPwm(real_T x, UInt8 rtu_SI_e_VoltAD)
 }
 
 /* Function for Chart: '<S3>/FLDoorHndDriver' */
-static real_T DHM_LinPwmStepTime(real_T t, UInt8 rtu_SI_e_VoltAD)
+static real_T DHM_LinPwmStepTime(real_T t, UInt8 rtu_SI_e_Volt100mV)
 {
   real_T y;
-  y = (t * 10.0 / (DHM_GetPwm(139.0, rtu_SI_e_VoltAD) - DHM_GetPwm(77.0,
-         rtu_SI_e_VoltAD)) + 5.0) / 10.0;
+  y = t / (DHM_GetPwm(100.0, rtu_SI_e_Volt100mV) - DHM_GetPwm(70.0,
+            rtu_SI_e_Volt100mV));
+
+  /*  时间t按PWM区间差值等分(单位:100mV)  */
   if (y == 0.0) {
-    y = t;
+    y = 1.0;
   }
 
   return y;
 }
 
 /* Function for Chart: '<S3>/FLDoorHndDriver' */
-static void DHM_Unfold(UInt8 rtu_SI_e_VoltAD, HndPos_Sts_E
+static void DHM_Unfold(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
   rtu_SI_m_DoorHndPosSts, boolean_T *rty_SO_b_MotorA, boolean_T *rty_SO_b_MotorB,
   uint8_T *rty_SO_e_MotorCmd, uint8_T *rty_SO_e_MotorPwm, boolean_T
   *rty_SO_b_Error, DW_FLDoorHndDriver_DHM_T *localDW)
@@ -150,7 +152,7 @@ static void DHM_Unfold(UInt8 rtu_SI_e_VoltAD, HndPos_Sts_E
        case DHM_IN_Step1:
         {
           real_T tmp_0;
-          tmp_0 = DHM_GetPwm_j(139.0, rtu_SI_e_VoltAD);
+          tmp_0 = DHM_GetPwm_j(120.0, rtu_SI_e_Volt100mV);
           if (tmp_0 < 256.0) {
             if (tmp_0 >= 0.0) {
               *rty_SO_e_MotorPwm = (uint8_T)tmp_0;
@@ -168,7 +170,7 @@ static void DHM_Unfold(UInt8 rtu_SI_e_VoltAD, HndPos_Sts_E
        case DHM_IN_Step4:
         {
           real_T tmp_0;
-          tmp_0 = DHM_GetPwm_j(77.0, rtu_SI_e_VoltAD);
+          tmp_0 = DHM_GetPwm_j(70.0, rtu_SI_e_Volt100mV);
           if (tmp_0 < 256.0) {
             if (tmp_0 >= 0.0) {
               *rty_SO_e_MotorPwm = (uint8_T)tmp_0;
@@ -284,7 +286,7 @@ static void DHM_Unfold(UInt8 rtu_SI_e_VoltAD, HndPos_Sts_E
             *rty_SO_e_MotorCmd = 1U;
             if (localDW->temporalCounter_i5 >= 30) {
               real_T tmp_0;
-              tmp_0 = DHM_GetPwm_j(139.0, rtu_SI_e_VoltAD);
+              tmp_0 = DHM_GetPwm_j(120.0, rtu_SI_e_Volt100mV);
               if (tmp_0 < 256.0) {
                 if (tmp_0 >= 0.0) {
                   *rty_SO_e_MotorPwm = (uint8_T)tmp_0;
@@ -300,7 +302,7 @@ static void DHM_Unfold(UInt8 rtu_SI_e_VoltAD, HndPos_Sts_E
 
               /*  保持驱动至门把手展开  */
             } else {
-              /*  初始电压为7V(AD:77)  */
+              /*  初始电压为7V(单位:100mV)  */
             }
           }
           break;
@@ -330,14 +332,16 @@ static void DHM_Unfold(UInt8 rtu_SI_e_VoltAD, HndPos_Sts_E
 
          case DHM_IN_Step3:
           {
-            if (localDW->temporalCounter_i5 >= 25) {
+            if (localDW->temporalCounter_i5 >= 60) {
               real_T tmp_0;
+
+              /*  过驱时间:600ms  */
               localDW->is_SoftStartStop = DHM_IN_Step4;
               localDW->temporalCounter_i2 = 0U;
               localDW->temporalCounter_i5 = 0U;
 
               /*  软停(线性降压)  */
-              tmp_0 = DHM_GetPwm_j(139.0, rtu_SI_e_VoltAD);
+              tmp_0 = DHM_GetPwm_j(120.0, rtu_SI_e_Volt100mV);
               if (tmp_0 < 256.0) {
                 if (tmp_0 >= 0.0) {
                   *rty_SO_e_MotorPwm = (uint8_T)tmp_0;
@@ -358,7 +362,7 @@ static void DHM_Unfold(UInt8 rtu_SI_e_VoltAD, HndPos_Sts_E
               real_T tmp_0;
 
               /*  正常驱动完成  */
-              tmp_0 = DHM_GetPwm_j(77.0, rtu_SI_e_VoltAD);
+              tmp_0 = DHM_GetPwm_j(70.0, rtu_SI_e_Volt100mV);
               if (tmp_0 < 256.0) {
                 if (tmp_0 >= 0.0) {
                   *rty_SO_e_MotorPwm = (uint8_T)tmp_0;
@@ -377,7 +381,7 @@ static void DHM_Unfold(UInt8 rtu_SI_e_VoltAD, HndPos_Sts_E
               *rty_SO_e_MotorPwm = 0U;
               *rty_SO_b_Error = false;
             } else {
-              /*  初始电压为12V(AD:139)  */
+              /*  初始电压为12V(单位:100mV)  */
             }
           }
           break;
@@ -423,7 +427,7 @@ void DHM_FLDoorHndDriver_Init(boolean_T *rty_SO_b_MotorA, boolean_T
  *    '<S3>/RLDoorHndDriver'
  *    '<S3>/RRDoorHndDriver'
  */
-void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_VoltAD, HndPos_Sts_E
+void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
   rtu_SI_m_DoorHndPosSts, boolean_T rtu_SI_b_DoorHndFoldReq, boolean_T
   rtu_SI_b_DoorHndUnfoldReq, boolean_T *rty_SO_b_MotorA, boolean_T
   *rty_SO_b_MotorB, uint8_T *rty_SO_e_MotorCmd, uint8_T *rty_SO_e_MotorPwm,
@@ -435,25 +439,25 @@ void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_VoltAD, HndPos_Sts_E
   uint32_T tmp_3;
 
   /* Chart: '<S3>/FLDoorHndDriver' */
-  tmp_0 = (uint32_T)DHM_LinPwmStepTime_p(30.0, rtu_SI_e_VoltAD);
+  tmp_0 = (uint32_T)DHM_LinPwmStepTime_p(30.0, rtu_SI_e_Volt100mV);
   if (localDW->temporalCounter_i1 < tmp_0) {
     localDW->temporalCounter_i1++;
   }
 
   /* Chart: '<S3>/FLDoorHndDriver' */
-  tmp_1 = (uint32_T)DHM_LinPwmStepTime_p(35.0, rtu_SI_e_VoltAD);
+  tmp_1 = (uint32_T)DHM_LinPwmStepTime_p(35.0, rtu_SI_e_Volt100mV);
   if (localDW->temporalCounter_i2 < tmp_1) {
     localDW->temporalCounter_i2++;
   }
 
   /* Chart: '<S3>/FLDoorHndDriver' */
-  tmp_2 = (uint32_T)DHM_LinPwmStepTime(30.0, rtu_SI_e_VoltAD);
+  tmp_2 = (uint32_T)DHM_LinPwmStepTime(30.0, rtu_SI_e_Volt100mV);
   if (localDW->temporalCounter_i3 < tmp_2) {
     localDW->temporalCounter_i3++;
   }
 
   /* Chart: '<S3>/FLDoorHndDriver' */
-  tmp_3 = (uint32_T)DHM_LinPwmStepTime(35.0, rtu_SI_e_VoltAD);
+  tmp_3 = (uint32_T)DHM_LinPwmStepTime(35.0, rtu_SI_e_Volt100mV);
   if (localDW->temporalCounter_i4 < tmp_3) {
     localDW->temporalCounter_i4++;
   }
@@ -489,7 +493,7 @@ void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_VoltAD, HndPos_Sts_E
              case DHM_IN_Step1:
               {
                 real_T tmp;
-                tmp = DHM_GetPwm(139.0, rtu_SI_e_VoltAD);
+                tmp = DHM_GetPwm(100.0, rtu_SI_e_Volt100mV);
                 if (tmp < 256.0) {
                   if (tmp >= 0.0) {
                     *rty_SO_e_MotorPwm = (uint8_T)tmp;
@@ -507,7 +511,7 @@ void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_VoltAD, HndPos_Sts_E
              case DHM_IN_Step4:
               {
                 real_T tmp;
-                tmp = DHM_GetPwm(77.0, rtu_SI_e_VoltAD);
+                tmp = DHM_GetPwm(70.0, rtu_SI_e_Volt100mV);
                 if (tmp < 256.0) {
                   if (tmp >= 0.0) {
                     *rty_SO_e_MotorPwm = (uint8_T)tmp;
@@ -547,7 +551,7 @@ void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_VoltAD, HndPos_Sts_E
               *rty_SO_e_MotorCmd = 2U;
               if (localDW->temporalCounter_i5 >= 30) {
                 real_T tmp;
-                tmp = DHM_GetPwm(139.0, rtu_SI_e_VoltAD);
+                tmp = DHM_GetPwm(100.0, rtu_SI_e_Volt100mV);
                 if (tmp < 256.0) {
                   if (tmp >= 0.0) {
                     *rty_SO_e_MotorPwm = (uint8_T)tmp;
@@ -563,7 +567,7 @@ void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_VoltAD, HndPos_Sts_E
 
                 /*  保持驱动至门把手折叠  */
               } else {
-                /*  初始电压为7V(AD:77)  */
+                /*  初始电压为7V(单位:100mV)  */
               }
             }
             break;
@@ -590,10 +594,12 @@ void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_VoltAD, HndPos_Sts_E
            case DHM_IN_Step3:
             {
               real_T tmp;
+
+              /*  过驱时间:0ms  */
               localDW->is_SoftStartStop_m = DHM_IN_Step4;
               localDW->temporalCounter_i4 = 0U;
               localDW->temporalCounter_i5 = 0U;
-              tmp = DHM_GetPwm(139.0, rtu_SI_e_VoltAD);
+              tmp = DHM_GetPwm(100.0, rtu_SI_e_Volt100mV);
               if (tmp < 256.0) {
                 if (tmp >= 0.0) {
                   *rty_SO_e_MotorPwm = (uint8_T)tmp;
@@ -611,7 +617,7 @@ void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_VoltAD, HndPos_Sts_E
               /* case IN_Step4: */
               if (localDW->temporalCounter_i5 >= 35) {
                 real_T tmp;
-                tmp = DHM_GetPwm(77.0, rtu_SI_e_VoltAD);
+                tmp = DHM_GetPwm(70.0, rtu_SI_e_Volt100mV);
                 if (tmp < 256.0) {
                   if (tmp >= 0.0) {
                     *rty_SO_e_MotorPwm = (uint8_T)tmp;
@@ -630,7 +636,7 @@ void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_VoltAD, HndPos_Sts_E
                 *rty_SO_e_MotorPwm = 0U;
                 *rty_SO_b_Error = false;
               } else {
-                /*  初始电压为12V(AD:139)  */
+                /*  初始电压为10V(单位:100mV)  */
               }
             }
             break;
@@ -662,7 +668,7 @@ void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_VoltAD, HndPos_Sts_E
           *rty_SO_e_MotorCmd = 2U;
           *rty_SO_b_MotorA = false;
           *rty_SO_b_MotorB = true;
-          tmp = DHM_GetPwm(77.0, rtu_SI_e_VoltAD);
+          tmp = DHM_GetPwm(70.0, rtu_SI_e_Volt100mV);
           if (tmp < 256.0) {
             if (tmp >= 0.0) {
               *rty_SO_e_MotorPwm = (uint8_T)tmp;
@@ -686,7 +692,7 @@ void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_VoltAD, HndPos_Sts_E
           *rty_SO_e_MotorCmd = 1U;
           *rty_SO_b_MotorA = true;
           *rty_SO_b_MotorB = false;
-          tmp = DHM_GetPwm_j(77.0, rtu_SI_e_VoltAD);
+          tmp = DHM_GetPwm_j(70.0, rtu_SI_e_Volt100mV);
           if (tmp < 256.0) {
             if (tmp >= 0.0) {
               *rty_SO_e_MotorPwm = (uint8_T)tmp;
@@ -713,7 +719,7 @@ void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_VoltAD, HndPos_Sts_E
           *rty_SO_e_MotorCmd = 2U;
           *rty_SO_b_MotorA = false;
           *rty_SO_b_MotorB = true;
-          tmp = DHM_GetPwm(77.0, rtu_SI_e_VoltAD);
+          tmp = DHM_GetPwm(70.0, rtu_SI_e_Volt100mV);
           if (tmp < 256.0) {
             if (tmp >= 0.0) {
               *rty_SO_e_MotorPwm = (uint8_T)tmp;
@@ -742,7 +748,7 @@ void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_VoltAD, HndPos_Sts_E
           *rty_SO_e_MotorCmd = 1U;
           *rty_SO_b_MotorA = true;
           *rty_SO_b_MotorB = false;
-          tmp = DHM_GetPwm_j(77.0, rtu_SI_e_VoltAD);
+          tmp = DHM_GetPwm_j(70.0, rtu_SI_e_Volt100mV);
           if (tmp < 256.0) {
             if (tmp >= 0.0) {
               *rty_SO_e_MotorPwm = (uint8_T)tmp;
@@ -758,7 +764,7 @@ void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_VoltAD, HndPos_Sts_E
 
      default:
       /* case IN_Unfold: */
-      DHM_Unfold(rtu_SI_e_VoltAD, rtu_SI_m_DoorHndPosSts, rty_SO_b_MotorA,
+      DHM_Unfold(rtu_SI_e_Volt100mV, rtu_SI_m_DoorHndPosSts, rty_SO_b_MotorA,
                  rty_SO_b_MotorB, rty_SO_e_MotorCmd, rty_SO_e_MotorPwm,
                  rty_SO_b_Error, localDW);
       break;
