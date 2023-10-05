@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'DHM'.
  *
- * Model version                  : 1.68
+ * Model version                  : 1.72
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Thu Oct  5 16:41:17 2023
+ * C/C++ source code generated on : Thu Oct  5 16:53:22 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -75,6 +75,14 @@ typedef struct {
 
 /* Block signals (default storage) */
 typedef struct {
+  uint8_T SO_e_MotorCmd;               /* '<S3>/RRDoorHndDriver' */
+  uint8_T SO_e_MotorPwm;               /* '<S3>/RRDoorHndDriver' */
+  uint8_T SO_e_MotorCmd_o;             /* '<S3>/RLDoorHndDriver' */
+  uint8_T SO_e_MotorPwm_c;             /* '<S3>/RLDoorHndDriver' */
+  uint8_T SO_e_MotorCmd_m;             /* '<S3>/FRDoorHndDriver' */
+  uint8_T SO_e_MotorPwm_g;             /* '<S3>/FRDoorHndDriver' */
+  uint8_T SO_e_MotorCmd_p;             /* '<S3>/FLDoorHndDriver' */
+  uint8_T SO_e_MotorPwm_i;             /* '<S3>/FLDoorHndDriver' */
   boolean_T SO_b_HndUnfoldReq;         /* '<S3>/RRDoorHndReq' */
   boolean_T SO_b_HndFoldReq;           /* '<S3>/RRDoorHndReq' */
   boolean_T SO_b_HndUnfoldReq_l;       /* '<S3>/RLDoorHndReq' */
@@ -83,8 +91,6 @@ typedef struct {
   boolean_T SO_b_HndFoldReq_o;         /* '<S3>/FRDoorHndReq' */
   boolean_T SO_b_HndUnfoldReq_k;       /* '<S3>/FLDoorHndReq' */
   boolean_T SO_b_HndFoldReq_b;         /* '<S3>/FLDoorHndReq' */
-  boolean_T SO_b_DrvDoorHndSetSts;     /* '<S3>/DoorHndSetSts' */
-  boolean_T SO_b_PassDoorHndSetSts;    /* '<S3>/DoorHndSetSts' */
   HndPos_Sts_E SI_m_FLDoorHndPosSts;   /* '<S3>/HndPosSts' */
   HndPos_Sts_E SI_m_FRDoorHndPosSts;   /* '<S3>/HndPosSts' */
   HndPos_Sts_E SI_m_RLDoorHndPosSts;   /* '<S3>/HndPosSts' */
@@ -265,42 +271,8 @@ extern RT_MODEL_DHM_T *const DHM_M;
 /*-
  * These blocks were eliminated from the model due to optimizations:
  *
- * Block '<S4>/Compare' : Unused code path elimination
- * Block '<S4>/Constant' : Unused code path elimination
- * Block '<S5>/Compare' : Unused code path elimination
- * Block '<S5>/Constant' : Unused code path elimination
- * Block '<S6>/Compare' : Unused code path elimination
- * Block '<S6>/Constant' : Unused code path elimination
- * Block '<S7>/Compare' : Unused code path elimination
- * Block '<S7>/Constant' : Unused code path elimination
- * Block '<S8>/Compare' : Unused code path elimination
- * Block '<S8>/Constant' : Unused code path elimination
- * Block '<S9>/Compare' : Unused code path elimination
- * Block '<S9>/Constant' : Unused code path elimination
  * Block '<S10>/Compare' : Unused code path elimination
  * Block '<S10>/Constant' : Unused code path elimination
- * Block '<S11>/Compare' : Unused code path elimination
- * Block '<S11>/Constant' : Unused code path elimination
- * Block '<S3>/Constant1' : Unused code path elimination
- * Block '<S3>/Constant2' : Unused code path elimination
- * Block '<S3>/Constant3' : Unused code path elimination
- * Block '<S3>/Constant4' : Unused code path elimination
- * Block '<S3>/Constant5' : Unused code path elimination
- * Block '<S3>/Constant6' : Unused code path elimination
- * Block '<S3>/Constant7' : Unused code path elimination
- * Block '<S3>/Constant8' : Unused code path elimination
- * Block '<S3>/Data Type Conversion3' : Unused code path elimination
- * Block '<S3>/Data Type Conversion4' : Unused code path elimination
- * Block '<S3>/Data Type Conversion5' : Unused code path elimination
- * Block '<S3>/Data Type Conversion6' : Unused code path elimination
- * Block '<S3>/Switch' : Unused code path elimination
- * Block '<S3>/Switch1' : Unused code path elimination
- * Block '<S3>/Switch2' : Unused code path elimination
- * Block '<S3>/Switch3' : Unused code path elimination
- * Block '<S3>/Switch4' : Unused code path elimination
- * Block '<S3>/Switch5' : Unused code path elimination
- * Block '<S3>/Switch6' : Unused code path elimination
- * Block '<S3>/Switch7' : Unused code path elimination
  */
 
 /*-
