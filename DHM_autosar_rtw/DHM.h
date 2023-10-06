@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'DHM'.
  *
- * Model version                  : 1.13
+ * Model version                  : 1.78
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Sat Sep  2 08:17:27 2023
+ * C/C++ source code generated on : Fri Oct  6 18:08:26 2023
  *
  * Target selection: autosar.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -24,106 +24,96 @@
 #include "DHM_types.h"
 #include "Rte_Type.h"
 
+/* Block states (default storage) for system '<S3>/FLDoorHndDriver' */
+typedef struct {
+  uint32 temporalCounter_i1;           /* '<S3>/FLDoorHndDriver' */
+  uint32 temporalCounter_i2;           /* '<S3>/FLDoorHndDriver' */
+  uint32 temporalCounter_i3;           /* '<S3>/FLDoorHndDriver' */
+  uint32 temporalCounter_i4;           /* '<S3>/FLDoorHndDriver' */
+  uint8 is_active_c19_DoorHndDriver;   /* '<S3>/FLDoorHndDriver' */
+  uint8 is_Drive;                      /* '<S3>/FLDoorHndDriver' */
+  uint8 is_Unfold;                     /* '<S3>/FLDoorHndDriver' */
+  uint8 is_SoftStartStop;              /* '<S3>/FLDoorHndDriver' */
+  uint8 is_Icebreak;                   /* '<S3>/FLDoorHndDriver' */
+  uint8 is_Fold;                       /* '<S3>/FLDoorHndDriver' */
+  uint8 is_SoftStartStop_m;            /* '<S3>/FLDoorHndDriver' */
+  uint8 SL_e_CycleCount;               /* '<S3>/FLDoorHndDriver' */
+  uint8 temporalCounter_i5;            /* '<S3>/FLDoorHndDriver' */
+  boolean SI_b_DoorHndUnfoldReq_prev;  /* '<S3>/FLDoorHndDriver' */
+  boolean SI_b_DoorHndUnfoldReq_start; /* '<S3>/FLDoorHndDriver' */
+  boolean SI_b_DoorHndFoldReq_prev;    /* '<S3>/FLDoorHndDriver' */
+  boolean SI_b_DoorHndFoldReq_start;   /* '<S3>/FLDoorHndDriver' */
+} DW_FLDoorHndDriver_DHM_T;
+
+/* Block states (default storage) for system '<S3>/FLDoorHndReq' */
+typedef struct {
+  uint16 temporalCounter_i3;           /* '<S3>/FLDoorHndReq' */
+  uint8 is_active_c4_DoorHndReq;       /* '<S3>/FLDoorHndReq' */
+  uint8 is_AntiPlay;                   /* '<S3>/FLDoorHndReq' */
+  uint8 is_Unfold;                     /* '<S3>/FLDoorHndReq' */
+  uint8 is_Fold;                       /* '<S3>/FLDoorHndReq' */
+  uint8 SL_e_antiPlayCount;            /* '<S3>/FLDoorHndReq' */
+  uint8 SL_b_antiPlayFlg;              /* '<S3>/FLDoorHndReq' */
+  uint8 temporalCounter_i1;            /* '<S3>/FLDoorHndReq' */
+  uint8 temporalCounter_i2;            /* '<S3>/FLDoorHndReq' */
+  uint8 SI_e_DoorHndSet_prev;          /* '<S3>/FLDoorHndReq' */
+  uint8 SI_e_DoorHndSet_start;         /* '<S3>/FLDoorHndReq' */
+  boolean SI_b_CrashOutpSts_prev;      /* '<S3>/FLDoorHndReq' */
+  boolean SI_b_CrashOutpSts_start;     /* '<S3>/FLDoorHndReq' */
+  HndPos_Sts_E SI_m_HndPosSts_prev;    /* '<S3>/FLDoorHndReq' */
+  HndPos_Sts_E SI_m_HndPosSts_start;   /* '<S3>/FLDoorHndReq' */
+} DW_FLDoorHndReq_DHM_T;
+
 /* Block signals (default storage) */
 typedef struct tag_B_DHM_T {
-  UInt8 TmpSignalConversionAtVeOUT_SP_E;
-  UInt8 TmpSignalConversionAtVeOUT_DLK_;
-  UInt8 TmpSignalConversionAtVeOUT_DL_l;
+  UInt8 TmpSignalConversionAtVeINP_HWA_;
   UInt8 TmpSignalConversionAtVeINP_CAN_;
-  uint8 SO_e_BDCPassDoorHndSts;        /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  uint8 SO_e_BDCLeReDoorHndSts;        /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  uint8 SO_e_BDCRiReDoorHndSts;        /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  uint8 SO_e_BDCDrvrDoorHndSts;        /* '<S3>/DRIVER_DOOR HANDLE' */
-  Boolean TmpSignalConversionAtVbINP_CAN_;
-  Boolean TmpSignalConversionAtVbOUT_SP_C;
-  Boolean TmpSignalConversionAtVbINP_CA_m;
-  boolean SO_b_HandleFold;             /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  boolean SO_b_HandleUnfold;           /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  boolean SO_b_FLHadUnfold;            /* '<S3>/DRIVER_DOOR HANDLE' */
-  boolean SO_b_FLHadFold;              /* '<S3>/DRIVER_DOOR HANDLE' */
+  UInt8 TmpSignalConversionAtVeINP_CA_a;
+  uint8 SO_e_MotorCmd;                 /* '<S3>/RRDoorHndDriver' */
+  uint8 SO_e_MotorPwm;                 /* '<S3>/RRDoorHndDriver' */
+  uint8 SO_e_MotorCmd_o;               /* '<S3>/RLDoorHndDriver' */
+  uint8 SO_e_MotorPwm_h;               /* '<S3>/RLDoorHndDriver' */
+  uint8 SO_e_MotorCmd_m;               /* '<S3>/FRDoorHndDriver' */
+  uint8 SO_e_MotorPwm_c;               /* '<S3>/FRDoorHndDriver' */
+  uint8 SO_e_MotorCmd_p;               /* '<S3>/FLDoorHndDriver' */
+  uint8 SO_e_MotorPwm_l;               /* '<S3>/FLDoorHndDriver' */
+  boolean SO_b_HndUnfoldReq;           /* '<S3>/RRDoorHndReq' */
+  boolean SO_b_HndFoldReq;             /* '<S3>/RRDoorHndReq' */
+  boolean SO_b_HndUnfoldReq_l;         /* '<S3>/RLDoorHndReq' */
+  boolean SO_b_HndFoldReq_m;           /* '<S3>/RLDoorHndReq' */
+  boolean SO_b_HndUnfoldReq_p;         /* '<S3>/FRDoorHndReq' */
+  boolean SO_b_HndFoldReq_o;           /* '<S3>/FRDoorHndReq' */
+  boolean SO_b_HndUnfoldReq_k;         /* '<S3>/FLDoorHndReq' */
+  boolean SO_b_HndFoldReq_b;           /* '<S3>/FLDoorHndReq' */
+  boolean SO_b_DrvDoorHndSetSts;       /* '<S3>/DoorHndSetSts' */
+  boolean SO_b_DrvDoorHndBtnSetSts;    /* '<S3>/DoorHndSetSts' */
+  boolean SO_b_PassDoorHndSetSts;      /* '<S3>/DoorHndSetSts' */
+  boolean SO_b_PassDoorHndBtnSetSts;   /* '<S3>/DoorHndSetSts' */
+  HndPos_Sts_E SI_m_FLDoorHndPosSts;   /* '<S3>/HndPosSts' */
+  HndPos_Sts_E SI_m_FRDoorHndPosSts;   /* '<S3>/HndPosSts' */
+  HndPos_Sts_E SI_m_RLDoorHndPosSts;   /* '<S3>/HndPosSts' */
+  HndPos_Sts_E SI_m_RRDoorHndPosSts;   /* '<S3>/HndPosSts' */
 } B_DHM_T;
 
 /* Block states (default storage) for system '<Root>' */
 typedef struct tag_DW_DHM_T {
-  uint8 UnitDelay2_DSTATE;             /* '<S3>/Unit Delay2' */
-  uint8 UnitDelay4_DSTATE;             /* '<S3>/Unit Delay4' */
-  uint8 UnitDelay5_DSTATE;             /* '<S3>/Unit Delay5' */
-  uint8 is_active_c4_DHM;              /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  uint8 is_UNFOLD_ACT;                 /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  uint8 is_FOLD_ACT;                   /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  uint8 is_FR;                         /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  uint8 is_RL;                         /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  uint8 is_RR;                         /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  uint8 is_FOLD_SLEEP_PERMIT;          /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  uint8 is_OUTPUT_FR;                  /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  uint8 is_OUTPUT_RL;                  /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  uint8 is_OUTPUT_RR;                  /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  uint8 SL_e_BDCPassDoorHndSts;        /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  uint8 SL_e_BDCLeReDoorHndSts;        /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  uint8 SL_e_BDCRiReDoorHndSts;        /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  uint8 temporalCounter_i1;            /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  uint8 temporalCounter_i2;            /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  uint8 temporalCounter_i3;            /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  uint8 temporalCounter_i4;            /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  uint8 temporalCounter_i5;            /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  uint8 SI_e_BcmPassDoorLckSts_prev;   /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  uint8 SI_e_BcmPassDoorLckSts_start;  /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  uint8 SI_e_BcmDrvrDoorLckSts_prev;   /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  uint8 SI_e_BcmDrvrDoorLckSts_start;  /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  uint8 is_active_c3_DHM;              /* '<S3>/DRIVER_DOOR HANDLE' */
-  uint8 is_FOLD_ACT_d;                 /* '<S3>/DRIVER_DOOR HANDLE' */
-  uint8 is_UNFOLD_ACT_l;               /* '<S3>/DRIVER_DOOR HANDLE' */
-  uint8 is_OUTPUT_STATUS;              /* '<S3>/DRIVER_DOOR HANDLE' */
-  uint8 is_FOLD_SLEEP_PERMIT_j;        /* '<S3>/DRIVER_DOOR HANDLE' */
-  uint8 SL_e_BDCDrvrDoorHndSts;        /* '<S3>/DRIVER_DOOR HANDLE' */
-  uint8 temporalCounter_i1_p;          /* '<S3>/DRIVER_DOOR HANDLE' */
-  uint8 temporalCounter_i2_b;          /* '<S3>/DRIVER_DOOR HANDLE' */
-  uint8 temporalCounter_i3_h;          /* '<S3>/DRIVER_DOOR HANDLE' */
-  uint8 SI_e_BcmPassDoorLckSts_prev_n; /* '<S3>/DRIVER_DOOR HANDLE' */
-  uint8 SI_e_BcmPassDoorLckSts_start_p;/* '<S3>/DRIVER_DOOR HANDLE' */
-  uint8 SI_e_BcmDrvrDoorLckSts_prev_a; /* '<S3>/DRIVER_DOOR HANDLE' */
-  uint8 SI_e_BcmDrvrDoorLckSts_start_p;/* '<S3>/DRIVER_DOOR HANDLE' */
-  boolean SL_b_Crash;                  /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  boolean SL_b_RRFullyOpen;            /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  boolean SL_b_RLFullyOpen;            /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  boolean SL_b_FRFullyOpen;            /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  boolean SL_b_RLHalfOpen;             /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  boolean SL_b_FRHalfOpen;             /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  boolean SL_b_RRHalfOpen;             /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  boolean SL_b_RLHalfClose;            /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  boolean SL_b_FRHalfClose;            /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  boolean SL_b_RRHalfClose;            /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  boolean SL_b_FOLD;                   /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  boolean SL_b_UNFOLD;                 /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  boolean SL_b_RLUnfoldSucc;           /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  boolean SL_b_RRUnfoldSucc;           /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  boolean SL_b_FRUnfoldSucc;           /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  boolean SI_b_RLHadPos2_prev;         /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  boolean SI_b_RLHadPos2_start;        /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  boolean SI_b_RRHadPos2_prev;         /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  boolean SI_b_RRHadPos2_start;        /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  boolean SI_b_FRHadPos2_prev;         /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  boolean SI_b_FRHadPos2_start;        /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  boolean SI_b_FRLockSts_prev;         /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  boolean SI_b_FRLockSts_start;        /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  boolean SI_b_CrashOutpSts_prev;      /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  boolean SI_b_CrashOutpSts_start;     /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  boolean SL_b_FRHalfOpen_prev;        /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  boolean SL_b_FRHalfOpen_start;       /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  boolean SL_b_RLHalfOpen_prev;        /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  boolean SL_b_RLHalfOpen_start;       /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  boolean SL_b_RRHalfOpen_prev;        /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  boolean SL_b_RRHalfOpen_start;       /* '<S3>/PASSENGER_DOOR_HANDLES' */
-  boolean SL_b_Crash_g;                /* '<S3>/DRIVER_DOOR HANDLE' */
-  boolean SL_b_OpenFully;              /* '<S3>/DRIVER_DOOR HANDLE' */
-  boolean SL_b_HalfOpen;               /* '<S3>/DRIVER_DOOR HANDLE' */
-  boolean SL_b_HalfClose;              /* '<S3>/DRIVER_DOOR HANDLE' */
-  boolean SI_b_FLLockSts_prev;         /* '<S3>/DRIVER_DOOR HANDLE' */
-  boolean SI_b_FLLockSts_start;        /* '<S3>/DRIVER_DOOR HANDLE' */
-  boolean SI_b_CrashOutpSts_prev_b;    /* '<S3>/DRIVER_DOOR HANDLE' */
-  boolean SI_b_CrashOutpSts_start_n;   /* '<S3>/DRIVER_DOOR HANDLE' */
-  boolean SI_b_FLHadPos2_prev;         /* '<S3>/DRIVER_DOOR HANDLE' */
-  boolean SI_b_FLHadPos2_start;        /* '<S3>/DRIVER_DOOR HANDLE' */
+  uint8 E15_DHM;                       /* '<S3>/Data Store Memory' */
+  uint8 is_active_c3_DHM;              /* '<S3>/HndPosSts' */
+  uint8 is_active_c1_DHM;              /* '<S3>/DoorHndSetSts' */
+  uint8 SL_e_DrvDoorHndSetBackup;      /* '<S3>/DoorHndSetSts' */
+  uint8 SL_e_PassDoorHndSetBackup;     /* '<S3>/DoorHndSetSts' */
+  uint8 SI_e_DrvDoorHndSet_prev;       /* '<S3>/DoorHndSetSts' */
+  uint8 SI_e_DrvDoorHndSet_start;      /* '<S3>/DoorHndSetSts' */
+  uint8 SI_e_PassDoorHndSet_prev;      /* '<S3>/DoorHndSetSts' */
+  uint8 SI_e_PassDoorHndSet_start;     /* '<S3>/DoorHndSetSts' */
+  DW_FLDoorHndReq_DHM_T sf_RRDoorHndReq;/* '<S3>/RRDoorHndReq' */
+  DW_FLDoorHndDriver_DHM_T sf_RRDoorHndDriver;/* '<S3>/RRDoorHndDriver' */
+  DW_FLDoorHndReq_DHM_T sf_RLDoorHndReq;/* '<S3>/RLDoorHndReq' */
+  DW_FLDoorHndDriver_DHM_T sf_RLDoorHndDriver;/* '<S3>/RLDoorHndDriver' */
+  DW_FLDoorHndReq_DHM_T sf_FRDoorHndReq;/* '<S3>/FRDoorHndReq' */
+  DW_FLDoorHndDriver_DHM_T sf_FRDoorHndDriver;/* '<S3>/FRDoorHndDriver' */
+  DW_FLDoorHndReq_DHM_T sf_FLDoorHndReq;/* '<S3>/FLDoorHndReq' */
+  DW_FLDoorHndDriver_DHM_T sf_FLDoorHndDriver;/* '<S3>/FLDoorHndDriver' */
 } DW_DHM_T;
 
 /* Block signals (default storage) */
@@ -135,7 +125,8 @@ extern DW_DHM_T DHM_DW;
 /*-
  * These blocks were eliminated from the model due to optimizations:
  *
- * Block '<S3>/Logical Operator' : Unused code path elimination
+ * Block '<S10>/Compare' : Unused code path elimination
+ * Block '<S10>/Constant' : Unused code path elimination
  */
 
 /*-
@@ -156,8 +147,25 @@ extern DW_DHM_T DHM_DW;
  * '<S1>'   : 'DHM/DHM_Init'
  * '<S2>'   : 'DHM/DHM_Step_sys'
  * '<S3>'   : 'DHM/DHM_Step_sys/DHM'
- * '<S4>'   : 'DHM/DHM_Step_sys/DHM/DRIVER_DOOR HANDLE'
- * '<S5>'   : 'DHM/DHM_Step_sys/DHM/PASSENGER_DOOR_HANDLES'
+ * '<S4>'   : 'DHM/DHM_Step_sys/DHM/Compare To Constant'
+ * '<S5>'   : 'DHM/DHM_Step_sys/DHM/Compare To Constant1'
+ * '<S6>'   : 'DHM/DHM_Step_sys/DHM/Compare To Constant2'
+ * '<S7>'   : 'DHM/DHM_Step_sys/DHM/Compare To Constant3'
+ * '<S8>'   : 'DHM/DHM_Step_sys/DHM/Compare To Constant4'
+ * '<S9>'   : 'DHM/DHM_Step_sys/DHM/Compare To Constant5'
+ * '<S10>'  : 'DHM/DHM_Step_sys/DHM/Compare To Constant6'
+ * '<S11>'  : 'DHM/DHM_Step_sys/DHM/Compare To Constant7'
+ * '<S12>'  : 'DHM/DHM_Step_sys/DHM/DoorHndSetSts'
+ * '<S13>'  : 'DHM/DHM_Step_sys/DHM/FLDoorHndDriver'
+ * '<S14>'  : 'DHM/DHM_Step_sys/DHM/FLDoorHndReq'
+ * '<S15>'  : 'DHM/DHM_Step_sys/DHM/FRDoorHndDriver'
+ * '<S16>'  : 'DHM/DHM_Step_sys/DHM/FRDoorHndReq'
+ * '<S17>'  : 'DHM/DHM_Step_sys/DHM/HndPosSts'
+ * '<S18>'  : 'DHM/DHM_Step_sys/DHM/RLDoorHndDriver'
+ * '<S19>'  : 'DHM/DHM_Step_sys/DHM/RLDoorHndReq'
+ * '<S20>'  : 'DHM/DHM_Step_sys/DHM/RRDoorHndDriver'
+ * '<S21>'  : 'DHM/DHM_Step_sys/DHM/RRDoorHndReq'
+ * '<S22>'  : 'DHM/DHM_Step_sys/DHM/Recycle Bin'
  */
 #endif                                 /* RTW_HEADER_DHM_h_ */
 

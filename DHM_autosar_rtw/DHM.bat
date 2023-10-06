@@ -1,9 +1,9 @@
 
-set MATLAB=C:\Program Files\MATLAB\R2022a
+set MATLAB=D:\APP\matlab
 
 cd .
 
-if "%1"=="" ("C:\PROGRA~1\MATLAB\R2022a\bin\win64\gmake"  -f DHM.mk all) else ("C:\PROGRA~1\MATLAB\R2022a\bin\win64\gmake"  -f DHM.mk %1)
+if "%1"=="" ("D:\APP\matlab\bin\win64\gmake"  -f DHM.mk all) else ("D:\APP\matlab\bin\win64\gmake"  -f DHM.mk %1)
 @if errorlevel 1 goto error_exit
 
 exit /B 0

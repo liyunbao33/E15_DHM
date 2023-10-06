@@ -1,0 +1,137 @@
+%implements "chartSource" "C"
+%function ChartConfig(block, system) void
+  %createrecord chartConfiguration { ...
+          executeAtInitialization  0 ...
+  }
+  %return chartConfiguration
+%endfunction
+%function ChartDataMap(block, system) void
+  %createrecord ChartDataElements {\
+    NumChartData   17 \
+    ChartDataDefaults {\
+      RecordType   "ChartData"\
+      Dimensions   []\
+      IsTestPoint  0\
+    }\
+    ChartData {\
+      Name         "is_active_c19_DoorHndDriver"\
+      Description  "StateIsActive"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_Drive"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "Drive"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_Unfold"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "Drive.Unfold"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_SoftStartStop"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "Drive.Unfold.SoftStartStop"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_Icebreak"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "Drive.Unfold.Icebreak"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_Fold"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "Drive.Fold"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_SoftStartStop"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "Drive.Fold.SoftStartStop"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "SL_e_CycleCount"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "SL_e_CycleCount"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "temporalCounter_i1"\
+      Description  "TemporalCounter"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "temporalCounter_i2"\
+      Description  "TemporalCounter"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "temporalCounter_i3"\
+      Description  "TemporalCounter"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "temporalCounter_i4"\
+      Description  "TemporalCounter"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "temporalCounter_i5"\
+      Description  "TemporalCounter"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "SI_b_DoorHndUnfoldReq_prev"\
+      Description  "ChangeDetectionDoubleBuffer"\
+      SFName       ""\
+      Path         "SI_b_DoorHndUnfoldReq"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "SI_b_DoorHndUnfoldReq_start"\
+      Description  "ChangeDetectionDoubleBuffer"\
+      SFName       ""\
+      Path         "SI_b_DoorHndUnfoldReq"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "SI_b_DoorHndFoldReq_prev"\
+      Description  "ChangeDetectionDoubleBuffer"\
+      SFName       ""\
+      Path         "SI_b_DoorHndFoldReq"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "SI_b_DoorHndFoldReq_start"\
+      Description  "ChangeDetectionDoubleBuffer"\
+      SFName       ""\
+      Path         "SI_b_DoorHndFoldReq"\
+      SrcLocation  ""\
+    }\
+  }
+  %return ChartDataElements
+%endfunction
