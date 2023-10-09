@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'DHM'.
  *
- * Model version                  : 1.78
+ * Model version                  : 1.82
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Thu Oct  5 22:19:56 2023
+ * C/C++ source code generated on : Mon Oct  9 16:21:06 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -91,10 +91,6 @@ typedef struct {
   boolean_T SO_b_HndFoldReq_o;         /* '<S3>/FRDoorHndReq' */
   boolean_T SO_b_HndUnfoldReq_k;       /* '<S3>/FLDoorHndReq' */
   boolean_T SO_b_HndFoldReq_b;         /* '<S3>/FLDoorHndReq' */
-  HndPos_Sts_E SI_m_FLDoorHndPosSts;   /* '<S3>/HndPosSts' */
-  HndPos_Sts_E SI_m_FRDoorHndPosSts;   /* '<S3>/HndPosSts' */
-  HndPos_Sts_E SI_m_RLDoorHndPosSts;   /* '<S3>/HndPosSts' */
-  HndPos_Sts_E SI_m_RRDoorHndPosSts;   /* '<S3>/HndPosSts' */
 } B_DHM_T;
 
 /* Block states (default storage) for system '<Root>' */

@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'DHM'.
  *
- * Model version                  : 1.78
+ * Model version                  : 1.82
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Thu Oct  5 22:19:56 2023
+ * C/C++ source code generated on : Mon Oct  9 16:21:06 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -79,9 +79,10 @@ static void DHM_Unfold(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
 static real_T DHM_GetHndPosSts(real_T pos1, real_T pos2);
 static uint8_T DHM_safe_cast_to_HndPos_Sts_E(uint8_T input);
 static void DHM_inner_default_DrvDoorHndSet(const uint8_T
-  *SI_e_DrvDoorHndSet_prev);
+  *SI_e_DrvDoorHndSet_prev, const HndPos_Sts_E *SI_m_FLDoorHndPosSts);
 static void DH_inner_default_PassDoorHndSet(const uint8_T
-  *SI_e_PassDoorHndSet_prev);
+  *SI_e_PassDoorHndSet_prev, const HndPos_Sts_E *SI_m_FRDoorHndPosSts, const
+  HndPos_Sts_E *SI_m_RLDoorHndPosSts, const HndPos_Sts_E *SI_m_RRDoorHndPosSts);
 
 /* Function for Chart: '<S3>/FLDoorHndDriver' */
 static real_T DHM_GetPwm_j(real_T x, UInt8 rtu_SI_e_Volt100mV)
@@ -1055,7 +1056,7 @@ static uint8_T DHM_safe_cast_to_HndPos_Sts_E(uint8_T input)
 
 /* Function for Chart: '<S3>/DoorHndSetSts' */
 static void DHM_inner_default_DrvDoorHndSet(const uint8_T
-  *SI_e_DrvDoorHndSet_prev)
+  *SI_e_DrvDoorHndSet_prev, const HndPos_Sts_E *SI_m_FLDoorHndPosSts)
 {
   if (*SI_e_DrvDoorHndSet_prev != DHM_DW.SI_e_DrvDoorHndSet_start) {
     /* Inport: '<Root>/VeINP_CAN_CdcDrivDoorHandSet_sig_VeINP_CAN_CdcDrivDoorHandSet_sig' */
@@ -1064,7 +1065,7 @@ static void DHM_inner_default_DrvDoorHndSet(const uint8_T
     switch (DHM_DW.SL_e_DrvDoorHndSetBackup) {
      case 4:
       /* Outport: '<Root>/VbOUT_DHM_BdcDrivDoorHandSetStsToEE_flg_VbOUT_DHM_BdcDrivDoorHandSetStsToEE_flg' */
-      DHM_Y.VbOUT_DHM_BdcDrivDoorHandSetS_j = ((DHM_B.SI_m_FLDoorHndPosSts ==
+      DHM_Y.VbOUT_DHM_BdcDrivDoorHandSetS_j = ((*SI_m_FLDoorHndPosSts ==
         Hnd_Unfold) || DHM_Y.VbOUT_DHM_BdcDrivDoorHandSetS_j);
       break;
 
@@ -1073,7 +1074,7 @@ static void DHM_inner_default_DrvDoorHndSet(const uint8_T
       DHM_Y.VbOUT_DHM_RLDoorHandButtonStsTo = true;
 
       /* Outport: '<Root>/VbOUT_DHM_BdcDrivDoorHandSetStsToEE_flg_VbOUT_DHM_BdcDrivDoorHandSetStsToEE_flg' */
-      DHM_Y.VbOUT_DHM_BdcDrivDoorHandSetS_j = ((DHM_B.SI_m_FLDoorHndPosSts ==
+      DHM_Y.VbOUT_DHM_BdcDrivDoorHandSetS_j = ((*SI_m_FLDoorHndPosSts ==
         Hnd_Unfold) || DHM_Y.VbOUT_DHM_BdcDrivDoorHandSetS_j);
       break;
 
@@ -1109,7 +1110,8 @@ static void DHM_inner_default_DrvDoorHndSet(const uint8_T
 
 /* Function for Chart: '<S3>/DoorHndSetSts' */
 static void DH_inner_default_PassDoorHndSet(const uint8_T
-  *SI_e_PassDoorHndSet_prev)
+  *SI_e_PassDoorHndSet_prev, const HndPos_Sts_E *SI_m_FRDoorHndPosSts, const
+  HndPos_Sts_E *SI_m_RLDoorHndPosSts, const HndPos_Sts_E *SI_m_RRDoorHndPosSts)
 {
   if (*SI_e_PassDoorHndSet_prev != DHM_DW.SI_e_PassDoorHndSet_start) {
     /* Inport: '<Root>/VeINP_CAN_CdcPassDoorHandSet_sig_VeINP_CAN_CdcPassDoorHandSet_sig' */
@@ -1118,9 +1120,9 @@ static void DH_inner_default_PassDoorHndSet(const uint8_T
     switch (DHM_DW.SL_e_PassDoorHndSetBackup) {
      case 4:
       /* Outport: '<Root>/VbOUT_DHM_BdcPassDoorHandSetStsToEE_flg_VbOUT_DHM_BdcPassDoorHandSetStsToEE_flg' */
-      DHM_Y.VbOUT_DHM_BdcPassDoorHandSetS_a = (((DHM_B.SI_m_FRDoorHndPosSts ==
-        Hnd_Unfold) && (DHM_B.SI_m_RLDoorHndPosSts == Hnd_Unfold) &&
-        (DHM_B.SI_m_RRDoorHndPosSts == Hnd_Unfold)) ||
+      DHM_Y.VbOUT_DHM_BdcPassDoorHandSetS_a = (((*SI_m_FRDoorHndPosSts ==
+        Hnd_Unfold) && (*SI_m_RLDoorHndPosSts == Hnd_Unfold) &&
+        (*SI_m_RRDoorHndPosSts == Hnd_Unfold)) ||
         DHM_Y.VbOUT_DHM_BdcPassDoorHandSetS_a);
       break;
 
@@ -1129,9 +1131,9 @@ static void DH_inner_default_PassDoorHndSet(const uint8_T
       DHM_Y.VbOUT_DHM_RRDoorHandButtonStsTo = true;
 
       /* Outport: '<Root>/VbOUT_DHM_BdcPassDoorHandSetStsToEE_flg_VbOUT_DHM_BdcPassDoorHandSetStsToEE_flg' */
-      DHM_Y.VbOUT_DHM_BdcPassDoorHandSetS_a = (((DHM_B.SI_m_FRDoorHndPosSts ==
-        Hnd_Unfold) && (DHM_B.SI_m_RLDoorHndPosSts == Hnd_Unfold) &&
-        (DHM_B.SI_m_RRDoorHndPosSts == Hnd_Unfold)) ||
+      DHM_Y.VbOUT_DHM_BdcPassDoorHandSetS_a = (((*SI_m_FRDoorHndPosSts ==
+        Hnd_Unfold) && (*SI_m_RLDoorHndPosSts == Hnd_Unfold) &&
+        (*SI_m_RRDoorHndPosSts == Hnd_Unfold)) ||
         DHM_Y.VbOUT_DHM_BdcPassDoorHandSetS_a);
       break;
 
@@ -1169,6 +1171,10 @@ static void DH_inner_default_PassDoorHndSet(const uint8_T
 void DHM_Step(void)                    /* Explicit Task: DHM_Step */
 {
   Gear_Posn_E rtb_DataTypeConversion2;
+  HndPos_Sts_E SI_m_FLDoorHndPosSts;
+  HndPos_Sts_E SI_m_FRDoorHndPosSts;
+  HndPos_Sts_E SI_m_RLDoorHndPosSts;
+  HndPos_Sts_E SI_m_RRDoorHndPosSts;
   uint8_T SI_e_DrvDoorHndSet_prev;
   uint8_T SI_e_PassDoorHndSet_prev;
   boolean_T SO_b_Error_g;
@@ -1196,52 +1202,105 @@ void DHM_Step(void)                    /* Explicit Task: DHM_Step */
       (real_T)DHM_U.VbINP_HWA_FLHadPos2_flg_VbINP_H);
     if (tmp < 2.147483648E+9) {
       if (tmp >= -2.147483648E+9) {
-        DHM_B.SI_m_FLDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E((uint8_T)
-          (int32_T)tmp);
+        SI_m_FLDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E((uint8_T)(int32_T)
+          tmp);
       } else {
-        DHM_B.SI_m_FLDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(0);
+        SI_m_FLDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(0);
       }
     } else {
-      DHM_B.SI_m_FLDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(MAX_uint8_T);
+      SI_m_FLDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(MAX_uint8_T);
     }
 
     tmp = DHM_GetHndPosSts((real_T)DHM_U.VbINP_HWA_FRHadPos1_flg_VbINP_H,
       (real_T)DHM_U.VbINP_HWA_FRHadPos2_flg_VbINP_H);
     if (tmp < 2.147483648E+9) {
       if (tmp >= -2.147483648E+9) {
-        DHM_B.SI_m_FRDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E((uint8_T)
-          (int32_T)tmp);
+        SI_m_FRDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E((uint8_T)(int32_T)
+          tmp);
       } else {
-        DHM_B.SI_m_FRDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(0);
+        SI_m_FRDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(0);
       }
     } else {
-      DHM_B.SI_m_FRDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(MAX_uint8_T);
+      SI_m_FRDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(MAX_uint8_T);
     }
 
     tmp = DHM_GetHndPosSts((real_T)DHM_U.VbINP_HWA_RLHadPos1_flg_VbINP_H,
       (real_T)DHM_U.VbINP_HWA_RLHadPos2_flg_VbINP_H);
     if (tmp < 2.147483648E+9) {
       if (tmp >= -2.147483648E+9) {
-        DHM_B.SI_m_RLDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E((uint8_T)
-          (int32_T)tmp);
+        SI_m_RLDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E((uint8_T)(int32_T)
+          tmp);
       } else {
-        DHM_B.SI_m_RLDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(0);
+        SI_m_RLDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(0);
       }
     } else {
-      DHM_B.SI_m_RLDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(MAX_uint8_T);
+      SI_m_RLDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(MAX_uint8_T);
     }
 
     tmp = DHM_GetHndPosSts((real_T)DHM_U.VbINP_HWA_RRHadPos1_flg_VbINP_H,
       (real_T)DHM_U.VbINP_HWA_RRHadPos2_flg_VbINP_H);
     if (tmp < 2.147483648E+9) {
       if (tmp >= -2.147483648E+9) {
-        DHM_B.SI_m_RRDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E((uint8_T)
-          (int32_T)tmp);
+        SI_m_RRDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E((uint8_T)(int32_T)
+          tmp);
       } else {
-        DHM_B.SI_m_RRDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(0);
+        SI_m_RRDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(0);
       }
     } else {
-      DHM_B.SI_m_RRDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(MAX_uint8_T);
+      SI_m_RRDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(MAX_uint8_T);
+    }
+  } else {
+    real_T tmp;
+    tmp = DHM_GetHndPosSts((real_T)DHM_U.VbINP_HWA_FLHadPos1_flg_VbINP_H,
+      (real_T)DHM_U.VbINP_HWA_FLHadPos2_flg_VbINP_H);
+    if (tmp < 2.147483648E+9) {
+      if (tmp >= -2.147483648E+9) {
+        SI_m_FLDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E((uint8_T)(int32_T)
+          tmp);
+      } else {
+        SI_m_FLDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(0);
+      }
+    } else {
+      SI_m_FLDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(MAX_uint8_T);
+    }
+
+    tmp = DHM_GetHndPosSts((real_T)DHM_U.VbINP_HWA_FRHadPos1_flg_VbINP_H,
+      (real_T)DHM_U.VbINP_HWA_FRHadPos2_flg_VbINP_H);
+    if (tmp < 2.147483648E+9) {
+      if (tmp >= -2.147483648E+9) {
+        SI_m_FRDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E((uint8_T)(int32_T)
+          tmp);
+      } else {
+        SI_m_FRDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(0);
+      }
+    } else {
+      SI_m_FRDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(MAX_uint8_T);
+    }
+
+    tmp = DHM_GetHndPosSts((real_T)DHM_U.VbINP_HWA_RLHadPos1_flg_VbINP_H,
+      (real_T)DHM_U.VbINP_HWA_RLHadPos2_flg_VbINP_H);
+    if (tmp < 2.147483648E+9) {
+      if (tmp >= -2.147483648E+9) {
+        SI_m_RLDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E((uint8_T)(int32_T)
+          tmp);
+      } else {
+        SI_m_RLDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(0);
+      }
+    } else {
+      SI_m_RLDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(MAX_uint8_T);
+    }
+
+    tmp = DHM_GetHndPosSts((real_T)DHM_U.VbINP_HWA_RRHadPos1_flg_VbINP_H,
+      (real_T)DHM_U.VbINP_HWA_RRHadPos2_flg_VbINP_H);
+    if (tmp < 2.147483648E+9) {
+      if (tmp >= -2.147483648E+9) {
+        SI_m_RRDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E((uint8_T)(int32_T)
+          tmp);
+      } else {
+        SI_m_RRDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(0);
+      }
+    } else {
+      SI_m_RRDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(MAX_uint8_T);
     }
   }
 
@@ -1262,11 +1321,15 @@ void DHM_Step(void)                    /* Explicit Task: DHM_Step */
   DHM_DW.SI_e_PassDoorHndSet_start = DHM_U.VeINP_CAN_CdcPassDoorHandSet_si;
   if (DHM_DW.is_active_c1_DHM == 0U) {
     DHM_DW.is_active_c1_DHM = 1U;
-    DHM_inner_default_DrvDoorHndSet(&DHM_U.VeINP_CAN_CdcDrivDoorHandSet_si);
-    DH_inner_default_PassDoorHndSet(&DHM_U.VeINP_CAN_CdcPassDoorHandSet_si);
+    DHM_inner_default_DrvDoorHndSet(&DHM_U.VeINP_CAN_CdcDrivDoorHandSet_si,
+      &SI_m_FLDoorHndPosSts);
+    DH_inner_default_PassDoorHndSet(&DHM_U.VeINP_CAN_CdcPassDoorHandSet_si,
+      &SI_m_FRDoorHndPosSts, &SI_m_RLDoorHndPosSts, &SI_m_RRDoorHndPosSts);
   } else {
-    DHM_inner_default_DrvDoorHndSet(&SI_e_DrvDoorHndSet_prev);
-    DH_inner_default_PassDoorHndSet(&SI_e_PassDoorHndSet_prev);
+    DHM_inner_default_DrvDoorHndSet(&SI_e_DrvDoorHndSet_prev,
+      &SI_m_FLDoorHndPosSts);
+    DH_inner_default_PassDoorHndSet(&SI_e_PassDoorHndSet_prev,
+      &SI_m_FRDoorHndPosSts, &SI_m_RLDoorHndPosSts, &SI_m_RRDoorHndPosSts);
   }
 
   /* End of Chart: '<S3>/DoorHndSetSts' */
@@ -1288,8 +1351,7 @@ void DHM_Step(void)                    /* Explicit Task: DHM_Step */
                    DHM_U.VbINP_CAN_EspVehSpdVld_flg_VbIN,
                    DHM_U.VbINP_HWA_FLLockSts_flg_VbINP_H,
                    DHM_U.VbINP_HWA_FLDoorAjar_flg_VbINP_, (Door_Sts_E)
-                   DHM_U.VeOUT_DLK_BdcDrvrDoorLockSts_si,
-                   DHM_B.SI_m_FLDoorHndPosSts,
+                   DHM_U.VeOUT_DLK_BdcDrvrDoorLockSts_si, SI_m_FLDoorHndPosSts,
                    DHM_Y.VbOUT_DHM_BdcDrivDoorHandSetS_j,
                    DHM_U.VeINP_CAN_CdcDrivDoorHandSet_si,
                    &DHM_B.SO_b_HndUnfoldReq_k, &DHM_B.SO_b_HndFoldReq_b,
@@ -1299,7 +1361,7 @@ void DHM_Step(void)                    /* Explicit Task: DHM_Step */
    *  Inport: '<Root>/VeINP_HWA_Voltage_100mV_VeINP_HWA_Voltage_100mV'
    */
   DHM_FLDoorHndDriver(DHM_U.VeINP_HWA_Voltage_100mV_VeINP_H,
-                      DHM_B.SI_m_FLDoorHndPosSts, DHM_B.SO_b_HndFoldReq_b,
+                      SI_m_FLDoorHndPosSts, DHM_B.SO_b_HndFoldReq_b,
                       DHM_B.SO_b_HndUnfoldReq_k, &SO_b_MotorA_i, &SO_b_MotorB_b,
                       &DHM_B.SO_e_MotorCmd_p, &DHM_B.SO_e_MotorPwm_l,
                       &SO_b_Error_g, &DHM_DW.sf_FLDoorHndDriver);
@@ -1324,7 +1386,7 @@ void DHM_Step(void)                    /* Explicit Task: DHM_Step */
                    DHM_U.VbINP_CAN_EspVehSpdVld_flg_VbIN,
                    DHM_U.VbINP_HWA_FRLockSts_flg_VbINP_H,
                    DHM_U.VbINP_HWA_RLDoorAjar_flg_VbINP_,
-                   rtb_DataTypeConversion1, DHM_B.SI_m_RLDoorHndPosSts,
+                   rtb_DataTypeConversion1, SI_m_RLDoorHndPosSts,
                    DHM_Y.VbOUT_DHM_BdcPassDoorHandSetS_a,
                    DHM_U.VeINP_CAN_CdcPassDoorHandSet_si,
                    &DHM_B.SO_b_HndUnfoldReq_l, &DHM_B.SO_b_HndFoldReq_m,
@@ -1334,7 +1396,7 @@ void DHM_Step(void)                    /* Explicit Task: DHM_Step */
    *  Inport: '<Root>/VeINP_HWA_Voltage_100mV_VeINP_HWA_Voltage_100mV'
    */
   DHM_FLDoorHndDriver(DHM_U.VeINP_HWA_Voltage_100mV_VeINP_H,
-                      DHM_B.SI_m_RLDoorHndPosSts, DHM_B.SO_b_HndUnfoldReq_l,
+                      SI_m_RLDoorHndPosSts, DHM_B.SO_b_HndUnfoldReq_l,
                       DHM_B.SO_b_HndFoldReq_m, &SO_b_MotorA_i, &SO_b_MotorB_b,
                       &DHM_B.SO_e_MotorCmd_o, &DHM_B.SO_e_MotorPwm_h,
                       &SO_b_Error_g, &DHM_DW.sf_RLDoorHndDriver);
@@ -1354,7 +1416,7 @@ void DHM_Step(void)                    /* Explicit Task: DHM_Step */
                    DHM_U.VbINP_CAN_EspVehSpdVld_flg_VbIN,
                    DHM_U.VbINP_HWA_FRLockSts_flg_VbINP_H,
                    DHM_U.VbINP_HWA_FRDoorAjar_flg_VbINP_,
-                   rtb_DataTypeConversion1, DHM_B.SI_m_FRDoorHndPosSts,
+                   rtb_DataTypeConversion1, SI_m_FRDoorHndPosSts,
                    DHM_Y.VbOUT_DHM_BdcPassDoorHandSetS_a,
                    DHM_U.VeINP_CAN_CdcPassDoorHandSet_si,
                    &DHM_B.SO_b_HndUnfoldReq_p, &DHM_B.SO_b_HndFoldReq_o,
@@ -1364,7 +1426,7 @@ void DHM_Step(void)                    /* Explicit Task: DHM_Step */
    *  Inport: '<Root>/VeINP_HWA_Voltage_100mV_VeINP_HWA_Voltage_100mV'
    */
   DHM_FLDoorHndDriver(DHM_U.VeINP_HWA_Voltage_100mV_VeINP_H,
-                      DHM_B.SI_m_FRDoorHndPosSts, DHM_B.SO_b_HndUnfoldReq_p,
+                      SI_m_FRDoorHndPosSts, DHM_B.SO_b_HndUnfoldReq_p,
                       DHM_B.SO_b_HndFoldReq_o, &SO_b_MotorA_i, &SO_b_MotorB_b,
                       &DHM_B.SO_e_MotorCmd_m, &DHM_B.SO_e_MotorPwm_c,
                       &SO_b_Error_g, &DHM_DW.sf_FRDoorHndDriver);
@@ -1384,7 +1446,7 @@ void DHM_Step(void)                    /* Explicit Task: DHM_Step */
                    DHM_U.VbINP_CAN_EspVehSpdVld_flg_VbIN,
                    DHM_U.VbINP_HWA_FRLockSts_flg_VbINP_H,
                    DHM_U.VbINP_HWA_RRDoorAjar_flg_VbINP_,
-                   rtb_DataTypeConversion1, DHM_B.SI_m_RRDoorHndPosSts,
+                   rtb_DataTypeConversion1, SI_m_RRDoorHndPosSts,
                    DHM_Y.VbOUT_DHM_BdcPassDoorHandSetS_a,
                    DHM_U.VeINP_CAN_CdcPassDoorHandSet_si,
                    &DHM_B.SO_b_HndUnfoldReq, &DHM_B.SO_b_HndFoldReq,
@@ -1394,7 +1456,7 @@ void DHM_Step(void)                    /* Explicit Task: DHM_Step */
    *  Inport: '<Root>/VeINP_HWA_Voltage_100mV_VeINP_HWA_Voltage_100mV'
    */
   DHM_FLDoorHndDriver(DHM_U.VeINP_HWA_Voltage_100mV_VeINP_H,
-                      DHM_B.SI_m_RRDoorHndPosSts, DHM_B.SO_b_HndUnfoldReq,
+                      SI_m_RRDoorHndPosSts, DHM_B.SO_b_HndUnfoldReq,
                       DHM_B.SO_b_HndFoldReq, &SO_b_MotorA_i, &SO_b_MotorB_b,
                       &DHM_B.SO_e_MotorCmd, &DHM_B.SO_e_MotorPwm, &SO_b_Error_g,
                       &DHM_DW.sf_RRDoorHndDriver);
@@ -1402,22 +1464,22 @@ void DHM_Step(void)                    /* Explicit Task: DHM_Step */
   /* Outport: '<Root>/VeOUT_DHM_BDCDrvrDoorHndSts_sig_VeOUT_DHM_BDCDrvrDoorHndSts_sig' incorporates:
    *  DataTypeConversion: '<S3>/Data Type Conversion3'
    */
-  DHM_Y.VeOUT_DHM_BDCDrvrDoorHndSts_sig = DHM_B.SI_m_FLDoorHndPosSts;
+  DHM_Y.VeOUT_DHM_BDCDrvrDoorHndSts_sig = SI_m_FLDoorHndPosSts;
 
   /* Outport: '<Root>/VeOUT_DHM_BDCPassDoorHndSts_sig_VeOUT_DHM_BDCPassDoorHndSts_sig' incorporates:
    *  DataTypeConversion: '<S3>/Data Type Conversion4'
    */
-  DHM_Y.VeOUT_DHM_BDCPassDoorHndSts_sig = DHM_B.SI_m_FRDoorHndPosSts;
+  DHM_Y.VeOUT_DHM_BDCPassDoorHndSts_sig = SI_m_FRDoorHndPosSts;
 
   /* Outport: '<Root>/VeOUT_DHM_BDCLeReDoorHndSts_sig_VeOUT_DHM_BDCLeReDoorHndSts_sig' incorporates:
    *  DataTypeConversion: '<S3>/Data Type Conversion5'
    */
-  DHM_Y.VeOUT_DHM_BDCLeReDoorHndSts_sig = DHM_B.SI_m_RLDoorHndPosSts;
+  DHM_Y.VeOUT_DHM_BDCLeReDoorHndSts_sig = SI_m_RLDoorHndPosSts;
 
   /* Outport: '<Root>/VeOUT_DHM_BDCRiReDoorHndSts_sig_VeOUT_DHM_BDCRiReDoorHndSts_sig' incorporates:
    *  DataTypeConversion: '<S3>/Data Type Conversion6'
    */
-  DHM_Y.VeOUT_DHM_BDCRiReDoorHndSts_sig = DHM_B.SI_m_RRDoorHndPosSts;
+  DHM_Y.VeOUT_DHM_BDCRiReDoorHndSts_sig = SI_m_RRDoorHndPosSts;
 
   /* Switch: '<S3>/Switch' incorporates:
    *  Constant: '<S4>/Constant'
