@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'DHM'.
  *
- * Model version                  : 1.78
+ * Model version                  : 1.80
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Fri Oct  6 18:08:26 2023
+ * C/C++ source code generated on : Mon Oct  9 14:19:48 2023
  *
  * Target selection: autosar.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -1168,30 +1168,40 @@ void DHM_Step(void)                    /* Explicit Task: DHM_Step */
   (void)Rte_Read_VeINP_HWA_Voltage_100mV_VeINP_HWA_Voltage_100mV
     (&DHM_B.TmpSignalConversionAtVeINP_HWA_);
 
-  /* Chart: '<S3>/HndPosSts' incorporates:
-   *  Inport: '<Root>/VbINP_HWA_FLHadPos1_flg_VbINP_HWA_FLHadPos1_flg'
-   *  Inport: '<Root>/VbINP_HWA_FLHadPos2_flg_VbINP_HWA_FLHadPos2_flg'
-   *  Inport: '<Root>/VbINP_HWA_FRHadPos1_flg_VbINP_HWA_FRHadPos1_flg'
-   *  Inport: '<Root>/VbINP_HWA_FRHadPos2_flg_VbINP_HWA_FRHadPos2_flg'
-   *  Inport: '<Root>/VbINP_HWA_RLHadPos1_flg_VbINP_HWA_RLHadPos1_flg'
-   *  Inport: '<Root>/VbINP_HWA_RLHadPos2_flg_VbINP_HWA_RLHadPos2_flg'
-   *  Inport: '<Root>/VbINP_HWA_RRHadPos1_flg_VbINP_HWA_RRHadPos1_flg'
-   *  Inport: '<Root>/VbINP_HWA_RRHadPos2_flg_VbINP_HWA_RRHadPos2_flg'
+  /* End of Outputs for RootInportFunctionCallGenerator generated from: '<Root>/DHM_Step' */
+
+  /* Inport: '<Root>/VbINP_HWA_FLHadPos1_flg_VbINP_HWA_FLHadPos1_flg' */
+  (void)Rte_Read_VbINP_HWA_FLHadPos1_flg_VbINP_HWA_FLHadPos1_flg(&SO_b_MotorA_i);
+
+  /* Inport: '<Root>/VbINP_HWA_FLHadPos2_flg_VbINP_HWA_FLHadPos2_flg' */
+  (void)Rte_Read_VbINP_HWA_FLHadPos2_flg_VbINP_HWA_FLHadPos2_flg(&SO_b_MotorB_b);
+
+  /* Inport: '<Root>/VbINP_HWA_FRHadPos1_flg_VbINP_HWA_FRHadPos1_flg' */
+  (void)Rte_Read_VbINP_HWA_FRHadPos1_flg_VbINP_HWA_FRHadPos1_flg(&SO_b_Error_g);
+
+  /* Inport: '<Root>/VbINP_HWA_FRHadPos2_flg_VbINP_HWA_FRHadPos2_flg' */
+  (void)Rte_Read_VbINP_HWA_FRHadPos2_flg_VbINP_HWA_FRHadPos2_flg(&tmpRead_2);
+
+  /* Inport: '<Root>/VbINP_HWA_RLHadPos1_flg_VbINP_HWA_RLHadPos1_flg' */
+  (void)Rte_Read_VbINP_HWA_RLHadPos1_flg_VbINP_HWA_RLHadPos1_flg(&tmpRead_3);
+
+  /* Inport: '<Root>/VbINP_HWA_RLHadPos2_flg_VbINP_HWA_RLHadPos2_flg' */
+  (void)Rte_Read_VbINP_HWA_RLHadPos2_flg_VbINP_HWA_RLHadPos2_flg(&tmpRead_4);
+
+  /* Inport: '<Root>/VbINP_HWA_RRHadPos1_flg_VbINP_HWA_RRHadPos1_flg' */
+  (void)Rte_Read_VbINP_HWA_RRHadPos1_flg_VbINP_HWA_RRHadPos1_flg(&tmpRead_5);
+
+  /* Inport: '<Root>/VbINP_HWA_RRHadPos2_flg_VbINP_HWA_RRHadPos2_flg' */
+  (void)Rte_Read_VbINP_HWA_RRHadPos2_flg_VbINP_HWA_RRHadPos2_flg(&tmpRead_6);
+
+  /* RootInportFunctionCallGenerator generated from: '<Root>/DHM_Step' incorporates:
+   *  SubSystem: '<Root>/DHM_Step_sys'
    */
+  /* Chart: '<S3>/HndPosSts' */
   if (DHM_DW.is_active_c3_DHM == 0U) {
     float64 tmp;
-    (void)Rte_Read_VbINP_HWA_RRHadPos2_flg_VbINP_HWA_RRHadPos2_flg
-      (&SO_b_MotorA_i);
-    (void)Rte_Read_VbINP_HWA_RRHadPos1_flg_VbINP_HWA_RRHadPos1_flg
-      (&SO_b_MotorB_b);
-    (void)Rte_Read_VbINP_HWA_RLHadPos2_flg_VbINP_HWA_RLHadPos2_flg(&SO_b_Error_g);
-    (void)Rte_Read_VbINP_HWA_RLHadPos1_flg_VbINP_HWA_RLHadPos1_flg(&tmpRead_6);
-    (void)Rte_Read_VbINP_HWA_FRHadPos2_flg_VbINP_HWA_FRHadPos2_flg(&tmpRead_5);
-    (void)Rte_Read_VbINP_HWA_FRHadPos1_flg_VbINP_HWA_FRHadPos1_flg(&tmpRead_4);
-    (void)Rte_Read_VbINP_HWA_FLHadPos2_flg_VbINP_HWA_FLHadPos2_flg(&tmpRead_3);
-    (void)Rte_Read_VbINP_HWA_FLHadPos1_flg_VbINP_HWA_FLHadPos1_flg(&tmpRead_2);
     DHM_DW.is_active_c3_DHM = 1U;
-    tmp = DHM_GetHndPosSts((float64)tmpRead_2, (float64)tmpRead_3);
+    tmp = DHM_GetHndPosSts((float64)SO_b_MotorA_i, (float64)SO_b_MotorB_b);
     if (tmp < 2.147483648E+9) {
       if (tmp >= -2.147483648E+9) {
         DHM_B.SI_m_FLDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E((uint8)
@@ -1203,7 +1213,7 @@ void DHM_Step(void)                    /* Explicit Task: DHM_Step */
       DHM_B.SI_m_FLDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(MAX_uint8_T);
     }
 
-    tmp = DHM_GetHndPosSts((float64)tmpRead_4, (float64)tmpRead_5);
+    tmp = DHM_GetHndPosSts((float64)SO_b_Error_g, (float64)tmpRead_2);
     if (tmp < 2.147483648E+9) {
       if (tmp >= -2.147483648E+9) {
         DHM_B.SI_m_FRDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E((uint8)
@@ -1215,7 +1225,7 @@ void DHM_Step(void)                    /* Explicit Task: DHM_Step */
       DHM_B.SI_m_FRDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(MAX_uint8_T);
     }
 
-    tmp = DHM_GetHndPosSts((float64)tmpRead_6, (float64)SO_b_Error_g);
+    tmp = DHM_GetHndPosSts((float64)tmpRead_3, (float64)tmpRead_4);
     if (tmp < 2.147483648E+9) {
       if (tmp >= -2.147483648E+9) {
         DHM_B.SI_m_RLDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E((uint8)
@@ -1227,7 +1237,56 @@ void DHM_Step(void)                    /* Explicit Task: DHM_Step */
       DHM_B.SI_m_RLDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(MAX_uint8_T);
     }
 
-    tmp = DHM_GetHndPosSts((float64)SO_b_MotorB_b, (float64)SO_b_MotorA_i);
+    tmp = DHM_GetHndPosSts((float64)tmpRead_5, (float64)tmpRead_6);
+    if (tmp < 2.147483648E+9) {
+      if (tmp >= -2.147483648E+9) {
+        DHM_B.SI_m_RRDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E((uint8)
+          (sint32)tmp);
+      } else {
+        DHM_B.SI_m_RRDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(0);
+      }
+    } else {
+      DHM_B.SI_m_RRDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(MAX_uint8_T);
+    }
+  } else {
+    float64 tmp;
+    tmp = DHM_GetHndPosSts((float64)SO_b_MotorA_i, (float64)SO_b_MotorB_b);
+    if (tmp < 2.147483648E+9) {
+      if (tmp >= -2.147483648E+9) {
+        DHM_B.SI_m_FLDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E((uint8)
+          (sint32)tmp);
+      } else {
+        DHM_B.SI_m_FLDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(0);
+      }
+    } else {
+      DHM_B.SI_m_FLDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(MAX_uint8_T);
+    }
+
+    tmp = DHM_GetHndPosSts((float64)SO_b_Error_g, (float64)tmpRead_2);
+    if (tmp < 2.147483648E+9) {
+      if (tmp >= -2.147483648E+9) {
+        DHM_B.SI_m_FRDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E((uint8)
+          (sint32)tmp);
+      } else {
+        DHM_B.SI_m_FRDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(0);
+      }
+    } else {
+      DHM_B.SI_m_FRDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(MAX_uint8_T);
+    }
+
+    tmp = DHM_GetHndPosSts((float64)tmpRead_3, (float64)tmpRead_4);
+    if (tmp < 2.147483648E+9) {
+      if (tmp >= -2.147483648E+9) {
+        DHM_B.SI_m_RLDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E((uint8)
+          (sint32)tmp);
+      } else {
+        DHM_B.SI_m_RLDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(0);
+      }
+    } else {
+      DHM_B.SI_m_RLDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E(MAX_uint8_T);
+    }
+
+    tmp = DHM_GetHndPosSts((float64)tmpRead_5, (float64)tmpRead_6);
     if (tmp < 2.147483648E+9) {
       if (tmp >= -2.147483648E+9) {
         DHM_B.SI_m_RRDoorHndPosSts = DHM_safe_cast_to_HndPos_Sts_E((uint8)
