@@ -7,7 +7,7 @@
 %endfunction
 %function ChartDataMap(block, system) void
   %createrecord ChartDataElements {\
-    NumChartData   15 \
+    NumChartData   21 \
     ChartDataDefaults {\
       RecordType   "ChartData"\
       Dimensions   []\
@@ -28,17 +28,17 @@
       SrcLocation  ""\
     }\
     ChartData {\
-      Name         "is_Unfold"\
-      Description  "StateActiveChild"\
-      SFName       ""\
-      Path         "Unfold"\
-      SrcLocation  ""\
-    }\
-    ChartData {\
       Name         "is_Fold"\
       Description  "StateActiveChild"\
       SFName       ""\
       Path         "Fold"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_Unfold"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "Unfold"\
       SrcLocation  ""\
     }\
     ChartData {\
@@ -53,6 +53,20 @@
       Description  "ChartLocal"\
       SFName       ""\
       Path         "SL_b_antiPlayFlg"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "SL_b_UnfoldReqTrig"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "SL_b_UnfoldReqTrig"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "SL_b_FoldReqTrig"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "SL_b_FoldReqTrig"\
       SrcLocation  ""\
     }\
     ChartData {\
@@ -88,6 +102,34 @@
       Description  "ChangeDetectionDoubleBuffer"\
       SFName       ""\
       Path         "SI_m_HndPosSts"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "SI_b_DoorOpen_prev"\
+      Description  "ChangeDetectionDoubleBuffer"\
+      SFName       ""\
+      Path         "SI_b_DoorOpen"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "SI_b_DoorOpen_start"\
+      Description  "ChangeDetectionDoubleBuffer"\
+      SFName       ""\
+      Path         "SI_b_DoorOpen"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "SI_b_DoorLock_prev"\
+      Description  "ChangeDetectionDoubleBuffer"\
+      SFName       ""\
+      Path         "SI_b_DoorLock"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "SI_b_DoorLock_start"\
+      Description  "ChangeDetectionDoubleBuffer"\
+      SFName       ""\
+      Path         "SI_b_DoorLock"\
       SrcLocation  ""\
     }\
     ChartData {\

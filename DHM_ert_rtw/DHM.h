@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'DHM'.
  *
- * Model version                  : 1.82
+ * Model version                  : 1.97
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Mon Oct  9 16:21:06 2023
+ * C/C++ source code generated on : Tue Oct 10 14:02:15 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -56,17 +56,23 @@ typedef struct {
 
 /* Block states (default storage) for system '<S3>/FLDoorHndReq' */
 typedef struct {
-  uint16_T temporalCounter_i3;         /* '<S3>/FLDoorHndReq' */
+  uint16_T temporalCounter_i1;         /* '<S3>/FLDoorHndReq' */
   uint8_T is_active_c4_DoorHndReq;     /* '<S3>/FLDoorHndReq' */
   uint8_T is_AntiPlay;                 /* '<S3>/FLDoorHndReq' */
-  uint8_T is_Unfold;                   /* '<S3>/FLDoorHndReq' */
   uint8_T is_Fold;                     /* '<S3>/FLDoorHndReq' */
+  uint8_T is_Unfold;                   /* '<S3>/FLDoorHndReq' */
   uint8_T SL_e_antiPlayCount;          /* '<S3>/FLDoorHndReq' */
-  uint8_T SL_b_antiPlayFlg;            /* '<S3>/FLDoorHndReq' */
-  uint8_T temporalCounter_i1;          /* '<S3>/FLDoorHndReq' */
   uint8_T temporalCounter_i2;          /* '<S3>/FLDoorHndReq' */
+  uint8_T temporalCounter_i3;          /* '<S3>/FLDoorHndReq' */
   uint8_T SI_e_DoorHndSet_prev;        /* '<S3>/FLDoorHndReq' */
   uint8_T SI_e_DoorHndSet_start;       /* '<S3>/FLDoorHndReq' */
+  boolean_T SL_b_antiPlayFlg;          /* '<S3>/FLDoorHndReq' */
+  boolean_T SL_b_UnfoldReqTrig;        /* '<S3>/FLDoorHndReq' */
+  boolean_T SL_b_FoldReqTrig;          /* '<S3>/FLDoorHndReq' */
+  boolean_T SI_b_DoorOpen_prev;        /* '<S3>/FLDoorHndReq' */
+  boolean_T SI_b_DoorOpen_start;       /* '<S3>/FLDoorHndReq' */
+  boolean_T SI_b_DoorLock_prev;        /* '<S3>/FLDoorHndReq' */
+  boolean_T SI_b_DoorLock_start;       /* '<S3>/FLDoorHndReq' */
   boolean_T SI_b_CrashOutpSts_prev;    /* '<S3>/FLDoorHndReq' */
   boolean_T SI_b_CrashOutpSts_start;   /* '<S3>/FLDoorHndReq' */
   HndPos_Sts_E SI_m_HndPosSts_prev;    /* '<S3>/FLDoorHndReq' */
@@ -263,13 +269,6 @@ extern void DHM_Step(void);
 
 /* Real-time Model object */
 extern RT_MODEL_DHM_T *const DHM_M;
-
-/*-
- * These blocks were eliminated from the model due to optimizations:
- *
- * Block '<S10>/Compare' : Unused code path elimination
- * Block '<S10>/Constant' : Unused code path elimination
- */
 
 /*-
  * The generated code includes comments that allow you to trace directly
