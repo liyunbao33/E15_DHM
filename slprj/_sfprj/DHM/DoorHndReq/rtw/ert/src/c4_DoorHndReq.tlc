@@ -7,7 +7,7 @@
 %endfunction
 %function ChartDataMap(block, system) void
   %createrecord ChartDataElements {\
-    NumChartData   21 \
+    NumChartData   17 \
     ChartDataDefaults {\
       RecordType   "ChartData"\
       Dimensions   []\
@@ -28,17 +28,17 @@
       SrcLocation  ""\
     }\
     ChartData {\
-      Name         "is_Fold"\
-      Description  "StateActiveChild"\
-      SFName       ""\
-      Path         "Fold"\
-      SrcLocation  ""\
-    }\
-    ChartData {\
       Name         "is_Unfold"\
       Description  "StateActiveChild"\
       SFName       ""\
       Path         "Unfold"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_Fold"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "Fold"\
       SrcLocation  ""\
     }\
     ChartData {\
@@ -102,34 +102,6 @@
       Description  "ChangeDetectionDoubleBuffer"\
       SFName       ""\
       Path         "SI_m_HndPosSts"\
-      SrcLocation  ""\
-    }\
-    ChartData {\
-      Name         "SI_b_DoorOpen_prev"\
-      Description  "ChangeDetectionDoubleBuffer"\
-      SFName       ""\
-      Path         "SI_b_DoorOpen"\
-      SrcLocation  ""\
-    }\
-    ChartData {\
-      Name         "SI_b_DoorOpen_start"\
-      Description  "ChangeDetectionDoubleBuffer"\
-      SFName       ""\
-      Path         "SI_b_DoorOpen"\
-      SrcLocation  ""\
-    }\
-    ChartData {\
-      Name         "SI_b_DoorLock_prev"\
-      Description  "ChangeDetectionDoubleBuffer"\
-      SFName       ""\
-      Path         "SI_b_DoorLock"\
-      SrcLocation  ""\
-    }\
-    ChartData {\
-      Name         "SI_b_DoorLock_start"\
-      Description  "ChangeDetectionDoubleBuffer"\
-      SFName       ""\
-      Path         "SI_b_DoorLock"\
       SrcLocation  ""\
     }\
     ChartData {\
