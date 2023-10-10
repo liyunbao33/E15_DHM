@@ -5,7 +5,7 @@
  *
  * Model version                  : 1.97
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Tue Oct 10 15:36:51 2023
+ * C/C++ source code generated on : Tue Oct 10 16:15:49 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -70,6 +70,8 @@ static real_T DHM_GetPwm_j(real_T x, UInt8 rtu_SI_e_Volt100mV);
 static real_T DHM_LinPwmStepTime_p(real_T t, UInt8 rtu_SI_e_Volt100mV);
 static real_T DHM_GetPwm(real_T x, UInt8 rtu_SI_e_Volt100mV);
 static real_T DHM_LinPwmStepTime(real_T t, UInt8 rtu_SI_e_Volt100mV);
+static real_T DHM_LinPwmDown(real_T x, real_T y);
+static real_T DHM_LinPwmUp(real_T x, real_T y);
 static void DHM_Unfold(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
   rtu_SI_m_DoorHndPosSts, boolean_T *rty_SO_b_MotorA, boolean_T *rty_SO_b_MotorB,
   uint8_T *rty_SO_e_MotorCmd, uint8_T *rty_SO_e_MotorPwm, boolean_T
@@ -138,6 +140,30 @@ static real_T DHM_LinPwmStepTime(real_T t, UInt8 rtu_SI_e_Volt100mV)
   }
 
   return y;
+}
+
+/* Function for Chart: '<S3>/FLDoorHndDriver' */
+static real_T DHM_LinPwmDown(real_T x, real_T y)
+{
+  real_T z;
+  z = 0.0;
+  if (x > y) {
+    z = x - 1.0;
+  }
+
+  return z;
+}
+
+/* Function for Chart: '<S3>/FLDoorHndDriver' */
+static real_T DHM_LinPwmUp(real_T x, real_T y)
+{
+  real_T z;
+  z = 0.0;
+  if (x < y) {
+    z = x + 1.0;
+  }
+
+  return z;
 }
 
 /* Function for Chart: '<S3>/FLDoorHndDriver' */
@@ -302,8 +328,22 @@ static void DHM_Unfold(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
               localDW->temporalCounter_i5 = 0U;
 
               /*  保持驱动至门把手展开  */
-            } else {
+
               /*  初始电压为7V(单位:100mV)  */
+            } else if (localDW->temporalCounter_i1 == (uint32_T)
+                       DHM_LinPwmStepTime_p(30.0, rtu_SI_e_Volt100mV)) {
+              real_T tmp_0;
+              tmp_0 = DHM_LinPwmUp((real_T)*rty_SO_e_MotorPwm, DHM_GetPwm_j
+                                   (120.0, rtu_SI_e_Volt100mV));
+              if (tmp_0 < 256.0) {
+                if (tmp_0 >= 0.0) {
+                  *rty_SO_e_MotorPwm = (uint8_T)tmp_0;
+                } else {
+                  *rty_SO_e_MotorPwm = 0U;
+                }
+              } else {
+                *rty_SO_e_MotorPwm = MAX_uint8_T;
+              }
             }
           }
           break;
@@ -381,8 +421,22 @@ static void DHM_Unfold(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
               *rty_SO_b_MotorB = false;
               *rty_SO_e_MotorPwm = 0U;
               *rty_SO_b_Error = false;
-            } else {
+
               /*  初始电压为12V(单位:100mV)  */
+            } else if (localDW->temporalCounter_i2 == (uint32_T)
+                       DHM_LinPwmStepTime_p(35.0, rtu_SI_e_Volt100mV)) {
+              real_T tmp_0;
+              tmp_0 = DHM_LinPwmDown((real_T)*rty_SO_e_MotorPwm, DHM_GetPwm_j
+                (70.0, rtu_SI_e_Volt100mV));
+              if (tmp_0 < 256.0) {
+                if (tmp_0 >= 0.0) {
+                  *rty_SO_e_MotorPwm = (uint8_T)tmp_0;
+                } else {
+                  *rty_SO_e_MotorPwm = 0U;
+                }
+              } else {
+                *rty_SO_e_MotorPwm = MAX_uint8_T;
+              }
             }
           }
           break;
