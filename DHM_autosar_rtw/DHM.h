@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'DHM'.
  *
- * Model version                  : 1.80
+ * Model version                  : 1.97
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Mon Oct  9 14:19:48 2023
+ * C/C++ source code generated on : Tue Oct 10 16:34:46 2023
  *
  * Target selection: autosar.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -47,17 +47,19 @@ typedef struct {
 
 /* Block states (default storage) for system '<S3>/FLDoorHndReq' */
 typedef struct {
-  uint16 temporalCounter_i3;           /* '<S3>/FLDoorHndReq' */
+  uint16 temporalCounter_i1;           /* '<S3>/FLDoorHndReq' */
   uint8 is_active_c4_DoorHndReq;       /* '<S3>/FLDoorHndReq' */
   uint8 is_AntiPlay;                   /* '<S3>/FLDoorHndReq' */
   uint8 is_Unfold;                     /* '<S3>/FLDoorHndReq' */
   uint8 is_Fold;                       /* '<S3>/FLDoorHndReq' */
   uint8 SL_e_antiPlayCount;            /* '<S3>/FLDoorHndReq' */
-  uint8 SL_b_antiPlayFlg;              /* '<S3>/FLDoorHndReq' */
-  uint8 temporalCounter_i1;            /* '<S3>/FLDoorHndReq' */
   uint8 temporalCounter_i2;            /* '<S3>/FLDoorHndReq' */
+  uint8 temporalCounter_i3;            /* '<S3>/FLDoorHndReq' */
   uint8 SI_e_DoorHndSet_prev;          /* '<S3>/FLDoorHndReq' */
   uint8 SI_e_DoorHndSet_start;         /* '<S3>/FLDoorHndReq' */
+  boolean SL_b_antiPlayFlg;            /* '<S3>/FLDoorHndReq' */
+  boolean SL_b_UnfoldReqTrig;          /* '<S3>/FLDoorHndReq' */
+  boolean SL_b_FoldReqTrig;            /* '<S3>/FLDoorHndReq' */
   boolean SI_b_CrashOutpSts_prev;      /* '<S3>/FLDoorHndReq' */
   boolean SI_b_CrashOutpSts_start;     /* '<S3>/FLDoorHndReq' */
   HndPos_Sts_E SI_m_HndPosSts_prev;    /* '<S3>/FLDoorHndReq' */
@@ -121,13 +123,6 @@ extern B_DHM_T DHM_B;
 
 /* Block states (default storage) */
 extern DW_DHM_T DHM_DW;
-
-/*-
- * These blocks were eliminated from the model due to optimizations:
- *
- * Block '<S10>/Compare' : Unused code path elimination
- * Block '<S10>/Constant' : Unused code path elimination
- */
 
 /*-
  * The generated code includes comments that allow you to trace directly
