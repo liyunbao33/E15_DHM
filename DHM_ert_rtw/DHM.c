@@ -5,7 +5,7 @@
  *
  * Model version                  : 1.103
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Wed Oct 11 10:28:17 2023
+ * C/C++ source code generated on : Wed Oct 11 11:31:14 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -508,14 +508,14 @@ void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
   }
 
   /* Chart: '<S3>/FLDoorHndDriver' */
-  tmp_2 = (uint32_T)DHM_LinPwmStepTime(30.0, rtu_SI_e_Volt100mV);
-  if (localDW->temporalCounter_i3 < tmp_2) {
+  tmp_3 = (uint32_T)DHM_LinPwmStepTime(30.0, rtu_SI_e_Volt100mV);
+  if (localDW->temporalCounter_i3 < tmp_3) {
     localDW->temporalCounter_i3++;
   }
 
   /* Chart: '<S3>/FLDoorHndDriver' */
-  tmp_3 = (uint32_T)DHM_LinPwmStepTime(35.0, rtu_SI_e_Volt100mV);
-  if (localDW->temporalCounter_i4 < tmp_3) {
+  tmp_2 = (uint32_T)DHM_LinPwmStepTime(35.0, rtu_SI_e_Volt100mV);
+  if (localDW->temporalCounter_i4 < tmp_2) {
     localDW->temporalCounter_i4++;
   }
 
@@ -623,8 +623,21 @@ void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
                 localDW->temporalCounter_i5 = 0U;
 
                 /*  保持驱动至门把手折叠  */
-              } else {
+
                 /*  初始电压为7V(单位:100mV)  */
+              } else if (localDW->temporalCounter_i3 == tmp_3) {
+                real_T tmp;
+                tmp = DHM_LinPwmUp((real_T)*rty_SO_e_MotorPwm, DHM_GetPwm(100.0,
+                  rtu_SI_e_Volt100mV));
+                if (tmp < 256.0) {
+                  if (tmp >= 0.0) {
+                    *rty_SO_e_MotorPwm = (uint8_T)tmp;
+                  } else {
+                    *rty_SO_e_MotorPwm = 0U;
+                  }
+                } else {
+                  *rty_SO_e_MotorPwm = MAX_uint8_T;
+                }
               }
             }
             break;
@@ -692,8 +705,21 @@ void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
                 *rty_SO_b_MotorB = false;
                 *rty_SO_e_MotorPwm = 0U;
                 *rty_SO_b_Error = false;
-              } else {
+
                 /*  初始电压为10V(单位:100mV)  */
+              } else if (localDW->temporalCounter_i4 == tmp_2) {
+                real_T tmp;
+                tmp = DHM_LinPwmDown((real_T)*rty_SO_e_MotorPwm, DHM_GetPwm(70.0,
+                  rtu_SI_e_Volt100mV));
+                if (tmp < 256.0) {
+                  if (tmp >= 0.0) {
+                    *rty_SO_e_MotorPwm = (uint8_T)tmp;
+                  } else {
+                    *rty_SO_e_MotorPwm = 0U;
+                  }
+                } else {
+                  *rty_SO_e_MotorPwm = MAX_uint8_T;
+                }
               }
             }
             break;
@@ -836,11 +862,11 @@ void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
     localDW->temporalCounter_i2 = 0U;
   }
 
-  if (localDW->temporalCounter_i3 == tmp_2) {
+  if (localDW->temporalCounter_i3 == tmp_3) {
     localDW->temporalCounter_i3 = 0U;
   }
 
-  if (localDW->temporalCounter_i4 == tmp_3) {
+  if (localDW->temporalCounter_i4 == tmp_2) {
     localDW->temporalCounter_i4 = 0U;
   }
 }
