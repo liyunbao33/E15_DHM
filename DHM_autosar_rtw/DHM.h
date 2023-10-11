@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'DHM'.
  *
- * Model version                  : 1.99
+ * Model version                  : 1.105
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Tue Oct 10 16:44:52 2023
+ * C/C++ source code generated on : Wed Oct 11 13:11:59 2023
  *
  * Target selection: autosar.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -49,6 +49,7 @@ typedef struct {
 typedef struct {
   uint16 temporalCounter_i1;           /* '<S3>/FLDoorHndReq' */
   uint8 is_active_c4_DoorHndReq;       /* '<S3>/FLDoorHndReq' */
+  uint8 is_c4_DoorHndReq;              /* '<S3>/FLDoorHndReq' */
   uint8 is_AntiPlay;                   /* '<S3>/FLDoorHndReq' */
   uint8 is_Unfold;                     /* '<S3>/FLDoorHndReq' */
   uint8 is_Fold;                       /* '<S3>/FLDoorHndReq' */
