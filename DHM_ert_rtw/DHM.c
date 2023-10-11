@@ -5,7 +5,7 @@
  *
  * Model version                  : 1.103
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Wed Oct 11 10:10:50 2023
+ * C/C++ source code generated on : Wed Oct 11 10:28:17 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -146,9 +146,10 @@ static real_T DHM_LinPwmStepTime(real_T t, UInt8 rtu_SI_e_Volt100mV)
 static real_T DHM_LinPwmDown(real_T x, real_T y)
 {
   real_T z;
-  z = 0.0;
   if (x > y) {
     z = x - 1.0;
+  } else {
+    z = x;
   }
 
   return z;
@@ -158,9 +159,10 @@ static real_T DHM_LinPwmDown(real_T x, real_T y)
 static real_T DHM_LinPwmUp(real_T x, real_T y)
 {
   real_T z;
-  z = 0.0;
   if (x < y) {
     z = x + 1.0;
+  } else {
+    z = x;
   }
 
   return z;
