@@ -5,7 +5,7 @@
  *
  * Model version                  : 1.103
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Wed Oct 11 11:31:14 2023
+ * C/C++ source code generated on : Wed Oct 11 12:19:41 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -44,8 +44,10 @@
 #define DHM_IN_Count                   ((uint8_T)2U)
 #define DHM_IN_CrashUnfoldReq          ((uint8_T)1U)
 #define DHM_IN_FoldReq                 ((uint8_T)1U)
+#define DHM_IN_Func                    ((uint8_T)1U)
 #define DHM_IN_Idle_g                  ((uint8_T)2U)
 #define DHM_IN_NormalUnfoldReq         ((uint8_T)3U)
+#define DHM_IN_PowerOnDelay            ((uint8_T)2U)
 #define DHM_IN_SpecUnfoldReq           ((uint8_T)4U)
 #define DHM_IN_TrigAndClean            ((uint8_T)3U)
 
@@ -926,31 +928,9 @@ void DHM_FLDoorHndReq(Boolean rtu_SI_b_CrashOutpSts, Gear_Posn_E
     localDW->SI_e_DoorHndSet_prev = rtu_SI_e_DoorHndSet;
     localDW->SI_b_CrashOutpSts_prev = rtu_SI_b_CrashOutpSts;
     localDW->is_active_c4_DoorHndReq = 1U;
-    localDW->is_AntiPlay = DHM_IN_Count;
+    localDW->is_c4_DoorHndReq = DHM_IN_PowerOnDelay;
     localDW->temporalCounter_i1 = 0U;
-    if (((localDW->SI_m_HndPosSts_prev != localDW->SI_m_HndPosSts_start) &&
-         (localDW->SI_m_HndPosSts_start == Hnd_Fold)) ||
-        ((localDW->SI_m_HndPosSts_prev != localDW->SI_m_HndPosSts_start) &&
-         (localDW->SI_m_HndPosSts_start == Hnd_Unfold))) {
-      int32_T tmp;
-      tmp = localDW->SL_e_antiPlayCount + 1;
-      if (localDW->SL_e_antiPlayCount + 1 > 255) {
-        tmp = 255;
-      }
-
-      localDW->SL_e_antiPlayCount = (uint8_T)tmp;
-    }
-
-    localDW->is_Unfold = DHM_IN_Idle_g;
-    *rty_SO_b_HndUnfoldReq = false;
-    localDW->SL_b_UnfoldReqTrig = ((rtu_SI_b_DoorOpen || (!rtu_SI_b_DoorLock)) &&
-      localDW->SL_b_UnfoldReqTrig);
-    localDW->is_Fold = DHM_IN_Idle_g;
-    *rty_SO_b_HndFoldReq = false;
-    localDW->SL_b_FoldReqTrig = (((rtu_SI_e_EspVehSpd > 20) ||
-      rtu_SI_b_EspVehSpdVld || (rtu_SI_m_DoorLockSts == Door_Lock)) &&
-      localDW->SL_b_FoldReqTrig);
-  } else {
+  } else if (localDW->is_c4_DoorHndReq == DHM_IN_Func) {
     switch (localDW->is_AntiPlay) {
      case DHM_IN_Clean:
       {
@@ -1109,6 +1089,34 @@ void DHM_FLDoorHndReq(Boolean rtu_SI_b_CrashOutpSts, Gear_Posn_E
         rtu_SI_b_EspVehSpdVld || (rtu_SI_m_DoorLockSts == Door_Lock)) &&
         localDW->SL_b_FoldReqTrig);
     }
+
+    /* case IN_PowerOnDelay: */
+  } else if (localDW->temporalCounter_i1 >= 100) {
+    localDW->is_c4_DoorHndReq = DHM_IN_Func;
+    localDW->is_AntiPlay = DHM_IN_Count;
+    localDW->temporalCounter_i1 = 0U;
+    if (((localDW->SI_m_HndPosSts_prev != localDW->SI_m_HndPosSts_start) &&
+         (localDW->SI_m_HndPosSts_start == Hnd_Fold)) ||
+        ((localDW->SI_m_HndPosSts_prev != localDW->SI_m_HndPosSts_start) &&
+         (localDW->SI_m_HndPosSts_start == Hnd_Unfold))) {
+      int32_T tmp;
+      tmp = localDW->SL_e_antiPlayCount + 1;
+      if (localDW->SL_e_antiPlayCount + 1 > 255) {
+        tmp = 255;
+      }
+
+      localDW->SL_e_antiPlayCount = (uint8_T)tmp;
+    }
+
+    localDW->is_Unfold = DHM_IN_Idle_g;
+    *rty_SO_b_HndUnfoldReq = false;
+    localDW->SL_b_UnfoldReqTrig = ((rtu_SI_b_DoorOpen || (!rtu_SI_b_DoorLock)) &&
+      localDW->SL_b_UnfoldReqTrig);
+    localDW->is_Fold = DHM_IN_Idle_g;
+    *rty_SO_b_HndFoldReq = false;
+    localDW->SL_b_FoldReqTrig = (((rtu_SI_e_EspVehSpd > 20) ||
+      rtu_SI_b_EspVehSpdVld || (rtu_SI_m_DoorLockSts == Door_Lock)) &&
+      localDW->SL_b_FoldReqTrig);
   }
 
   /* End of Chart: '<S3>/FLDoorHndReq' */

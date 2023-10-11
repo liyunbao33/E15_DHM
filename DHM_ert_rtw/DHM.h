@@ -5,7 +5,7 @@
  *
  * Model version                  : 1.103
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Wed Oct 11 11:31:14 2023
+ * C/C++ source code generated on : Wed Oct 11 12:19:41 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -58,6 +58,7 @@ typedef struct {
 typedef struct {
   uint16_T temporalCounter_i1;         /* '<S3>/FLDoorHndReq' */
   uint8_T is_active_c4_DoorHndReq;     /* '<S3>/FLDoorHndReq' */
+  uint8_T is_c4_DoorHndReq;            /* '<S3>/FLDoorHndReq' */
   uint8_T is_AntiPlay;                 /* '<S3>/FLDoorHndReq' */
   uint8_T is_Unfold;                   /* '<S3>/FLDoorHndReq' */
   uint8_T is_Fold;                     /* '<S3>/FLDoorHndReq' */
