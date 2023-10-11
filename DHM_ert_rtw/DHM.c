@@ -5,7 +5,7 @@
  *
  * Model version                  : 1.106
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Wed Oct 11 16:49:55 2023
+ * C/C++ source code generated on : Wed Oct 11 17:20:48 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -354,8 +354,8 @@ static void DHM_Unfold(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
                   (30.0, rtu_SI_e_Volt100mV)) {
                 real_T tmp_0;
                 tmp_0 = DHM_LinPwmUp((real_T)*rty_SO_e_MotorPwm, DHM_GetPwm_j
-                                     (120.0, rtu_SI_e_Volt100mV) - 1.0, 30.0 -
-                                     (real_T)localDW->SL_e_TickCount);
+                                     (120.0, rtu_SI_e_Volt100mV), 30.0 - (real_T)
+                                     localDW->SL_e_TickCount);
                 if (tmp_0 < 256.0) {
                   if (tmp_0 >= 0.0) {
                     *rty_SO_e_MotorPwm = (uint8_T)tmp_0;
@@ -456,7 +456,7 @@ static void DHM_Unfold(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
 
               localDW->SL_e_TickCount = (uint8_T)tmp;
               tmp_0 = DHM_LinPwmDown((real_T)*rty_SO_e_MotorPwm, DHM_GetPwm_j
-                (70.0, rtu_SI_e_Volt100mV) - 1.0, 35.0 - (real_T)
+                (70.0, rtu_SI_e_Volt100mV), 35.0 - (real_T)
                 localDW->SL_e_TickCount);
               if (tmp_0 < 256.0) {
                 if (tmp_0 >= 0.0) {
