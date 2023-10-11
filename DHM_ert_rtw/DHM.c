@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'DHM'.
  *
- * Model version                  : 1.103
+ * Model version                  : 1.106
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Wed Oct 11 12:19:41 2023
+ * C/C++ source code generated on : Wed Oct 11 14:48:44 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -1092,6 +1092,7 @@ void DHM_FLDoorHndReq(Boolean rtu_SI_b_CrashOutpSts, Gear_Posn_E
 
     /* case IN_PowerOnDelay: */
   } else if (localDW->temporalCounter_i1 >= 100) {
+    /*  上电延迟1s，防止底层信号量未及时传递导致请求误触发  */
     localDW->is_c4_DoorHndReq = DHM_IN_Func;
     localDW->is_AntiPlay = DHM_IN_Count;
     localDW->temporalCounter_i1 = 0U;
