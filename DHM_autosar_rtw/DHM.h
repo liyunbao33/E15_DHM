@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'DHM'.
  *
- * Model version                  : 1.105
+ * Model version                  : 1.17
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Wed Oct 11 13:11:59 2023
+ * C/C++ source code generated on : Thu Oct 12 09:30:35 2023
  *
  * Target selection: autosar.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -36,8 +36,9 @@ typedef struct {
   uint8 is_SoftStartStop;              /* '<S3>/FLDoorHndDriver' */
   uint8 is_Icebreak;                   /* '<S3>/FLDoorHndDriver' */
   uint8 is_Fold;                       /* '<S3>/FLDoorHndDriver' */
-  uint8 is_SoftStartStop_m;            /* '<S3>/FLDoorHndDriver' */
+  uint8 is_SoftStartStop_g;            /* '<S3>/FLDoorHndDriver' */
   uint8 SL_e_CycleCount;               /* '<S3>/FLDoorHndDriver' */
+  uint8 SL_e_TickCount;                /* '<S3>/FLDoorHndDriver' */
   uint8 temporalCounter_i5;            /* '<S3>/FLDoorHndDriver' */
   boolean SI_b_DoorHndUnfoldReq_prev;  /* '<S3>/FLDoorHndDriver' */
   boolean SI_b_DoorHndUnfoldReq_start; /* '<S3>/FLDoorHndDriver' */
@@ -74,20 +75,20 @@ typedef struct tag_B_DHM_T {
   UInt8 TmpSignalConversionAtVeINP_CA_a;
   uint8 SO_e_MotorCmd;                 /* '<S3>/RRDoorHndDriver' */
   uint8 SO_e_MotorPwm;                 /* '<S3>/RRDoorHndDriver' */
-  uint8 SO_e_MotorCmd_o;               /* '<S3>/RLDoorHndDriver' */
-  uint8 SO_e_MotorPwm_h;               /* '<S3>/RLDoorHndDriver' */
-  uint8 SO_e_MotorCmd_m;               /* '<S3>/FRDoorHndDriver' */
-  uint8 SO_e_MotorPwm_c;               /* '<S3>/FRDoorHndDriver' */
-  uint8 SO_e_MotorCmd_p;               /* '<S3>/FLDoorHndDriver' */
-  uint8 SO_e_MotorPwm_l;               /* '<S3>/FLDoorHndDriver' */
+  uint8 SO_e_MotorCmd_l;               /* '<S3>/RLDoorHndDriver' */
+  uint8 SO_e_MotorPwm_g;               /* '<S3>/RLDoorHndDriver' */
+  uint8 SO_e_MotorCmd_p;               /* '<S3>/FRDoorHndDriver' */
+  uint8 SO_e_MotorPwm_o;               /* '<S3>/FRDoorHndDriver' */
+  uint8 SO_e_MotorCmd_d;               /* '<S3>/FLDoorHndDriver' */
+  uint8 SO_e_MotorPwm_h;               /* '<S3>/FLDoorHndDriver' */
   boolean SO_b_HndUnfoldReq;           /* '<S3>/RRDoorHndReq' */
   boolean SO_b_HndFoldReq;             /* '<S3>/RRDoorHndReq' */
-  boolean SO_b_HndUnfoldReq_l;         /* '<S3>/RLDoorHndReq' */
-  boolean SO_b_HndFoldReq_m;           /* '<S3>/RLDoorHndReq' */
-  boolean SO_b_HndUnfoldReq_p;         /* '<S3>/FRDoorHndReq' */
-  boolean SO_b_HndFoldReq_o;           /* '<S3>/FRDoorHndReq' */
-  boolean SO_b_HndUnfoldReq_k;         /* '<S3>/FLDoorHndReq' */
-  boolean SO_b_HndFoldReq_b;           /* '<S3>/FLDoorHndReq' */
+  boolean SO_b_HndUnfoldReq_c;         /* '<S3>/RLDoorHndReq' */
+  boolean SO_b_HndFoldReq_j;           /* '<S3>/RLDoorHndReq' */
+  boolean SO_b_HndUnfoldReq_g;         /* '<S3>/FRDoorHndReq' */
+  boolean SO_b_HndFoldReq_n;           /* '<S3>/FRDoorHndReq' */
+  boolean SO_b_HndUnfoldReq_l;         /* '<S3>/FLDoorHndReq' */
+  boolean SO_b_HndFoldReq_g;           /* '<S3>/FLDoorHndReq' */
   boolean SO_b_DrvDoorHndSetSts;       /* '<S3>/DoorHndSetSts' */
   boolean SO_b_DrvDoorHndBtnSetSts;    /* '<S3>/DoorHndSetSts' */
   boolean SO_b_PassDoorHndSetSts;      /* '<S3>/DoorHndSetSts' */
@@ -124,6 +125,15 @@ extern B_DHM_T DHM_B;
 
 /* Block states (default storage) */
 extern DW_DHM_T DHM_DW;
+
+/*-
+ * These blocks were eliminated from the model due to optimizations:
+ *
+ * Block '<S3>/Data Type Conversion10' : Eliminate redundant data type conversion
+ * Block '<S3>/Data Type Conversion7' : Eliminate redundant data type conversion
+ * Block '<S3>/Data Type Conversion8' : Eliminate redundant data type conversion
+ * Block '<S3>/Data Type Conversion9' : Eliminate redundant data type conversion
+ */
 
 /*-
  * The generated code includes comments that allow you to trace directly
