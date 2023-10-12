@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'DHM'.
  *
- * Model version                  : 1.106
+ * Model version                  : 1.15
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Wed Oct 11 17:35:20 2023
+ * C/C++ source code generated on : Thu Oct 12 09:08:10 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -30,13 +30,13 @@
 #define DHM_IN_Interrupt2              ((uint8_T)4U)
 #define DHM_IN_NO_ACTIVE_CHILD         ((uint8_T)0U)
 #define DHM_IN_SoftStartStop           ((uint8_T)2U)
-#define DHM_IN_SoftStartStop_f         ((uint8_T)1U)
+#define DHM_IN_SoftStartStop_p         ((uint8_T)1U)
 #define DHM_IN_Step1                   ((uint8_T)1U)
 #define DHM_IN_Step2                   ((uint8_T)2U)
 #define DHM_IN_Step3                   ((uint8_T)3U)
 #define DHM_IN_Step4                   ((uint8_T)4U)
 #define DHM_IN_Stop                    ((uint8_T)3U)
-#define DHM_IN_Stop_o                  ((uint8_T)2U)
+#define DHM_IN_Stop_i                  ((uint8_T)2U)
 #define DHM_IN_Unfold                  ((uint8_T)5U)
 
 /* Named constants for Chart: '<S3>/FLDoorHndReq' */
@@ -45,7 +45,7 @@
 #define DHM_IN_CrashUnfoldReq          ((uint8_T)1U)
 #define DHM_IN_FoldReq                 ((uint8_T)1U)
 #define DHM_IN_Func                    ((uint8_T)1U)
-#define DHM_IN_Idle_g                  ((uint8_T)2U)
+#define DHM_IN_Idle_p                  ((uint8_T)2U)
 #define DHM_IN_NormalUnfoldReq         ((uint8_T)3U)
 #define DHM_IN_PowerOnDelay            ((uint8_T)2U)
 #define DHM_IN_SpecUnfoldReq           ((uint8_T)4U)
@@ -68,8 +68,8 @@ static RT_MODEL_DHM_T DHM_M_;
 RT_MODEL_DHM_T *const DHM_M = &DHM_M_;
 
 /* Forward declaration for local functions */
-static real_T DHM_GetPwm_j(real_T x, UInt8 rtu_SI_e_Volt100mV);
-static real_T DHM_LinPwmStepTime_p(real_T t, UInt8 rtu_SI_e_Volt100mV);
+static real_T DHM_GetPwm_n(real_T x, UInt8 rtu_SI_e_Volt100mV);
+static real_T DHM_LinPwmStepTime_j(real_T t, UInt8 rtu_SI_e_Volt100mV);
 static real_T DHM_GetPwm(real_T x, UInt8 rtu_SI_e_Volt100mV);
 static real_T DHM_LinPwmStepTime(real_T t, UInt8 rtu_SI_e_Volt100mV);
 static real_T DHM_LinPwmDown(real_T x, real_T y, real_T z);
@@ -89,7 +89,7 @@ static void DH_inner_default_PassDoorHndSet(const uint8_T
   HndPos_Sts_E *SI_m_RLDoorHndPosSts, const HndPos_Sts_E *SI_m_RRDoorHndPosSts);
 
 /* Function for Chart: '<S3>/FLDoorHndDriver' */
-static real_T DHM_GetPwm_j(real_T x, UInt8 rtu_SI_e_Volt100mV)
+static real_T DHM_GetPwm_n(real_T x, UInt8 rtu_SI_e_Volt100mV)
 {
   real_T y;
   y = x * 100.0 / (real_T)rtu_SI_e_Volt100mV;
@@ -103,10 +103,10 @@ static real_T DHM_GetPwm_j(real_T x, UInt8 rtu_SI_e_Volt100mV)
 }
 
 /* Function for Chart: '<S3>/FLDoorHndDriver' */
-static real_T DHM_LinPwmStepTime_p(real_T t, UInt8 rtu_SI_e_Volt100mV)
+static real_T DHM_LinPwmStepTime_j(real_T t, UInt8 rtu_SI_e_Volt100mV)
 {
   real_T y;
-  y = t / (DHM_GetPwm_j(120.0, rtu_SI_e_Volt100mV) - DHM_GetPwm_j(70.0,
+  y = t / (DHM_GetPwm_n(120.0, rtu_SI_e_Volt100mV) - DHM_GetPwm_n(70.0,
             rtu_SI_e_Volt100mV));
 
   /*  时间t按PWM区间差值等分(单位:100mV)  */
@@ -191,7 +191,7 @@ static void DHM_Unfold(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
        case DHM_IN_Step1:
         {
           real_T tmp_0;
-          tmp_0 = DHM_GetPwm_j(120.0, rtu_SI_e_Volt100mV);
+          tmp_0 = DHM_GetPwm_n(120.0, rtu_SI_e_Volt100mV);
           if (tmp_0 < 256.0) {
             if (tmp_0 >= 0.0) {
               *rty_SO_e_MotorPwm = (uint8_T)tmp_0;
@@ -209,7 +209,7 @@ static void DHM_Unfold(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
        case DHM_IN_Step4:
         {
           real_T tmp_0;
-          tmp_0 = DHM_GetPwm_j(70.0, rtu_SI_e_Volt100mV);
+          tmp_0 = DHM_GetPwm_n(70.0, rtu_SI_e_Volt100mV);
           if (tmp_0 < 256.0) {
             if (tmp_0 >= 0.0) {
               *rty_SO_e_MotorPwm = (uint8_T)tmp_0;
@@ -325,7 +325,7 @@ static void DHM_Unfold(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
             *rty_SO_e_MotorCmd = 1U;
             if (localDW->temporalCounter_i5 >= 30) {
               real_T tmp_0;
-              tmp_0 = DHM_GetPwm_j(120.0, rtu_SI_e_Volt100mV);
+              tmp_0 = DHM_GetPwm_n(120.0, rtu_SI_e_Volt100mV);
               if (tmp_0 < 256.0) {
                 if (tmp_0 >= 0.0) {
                   *rty_SO_e_MotorPwm = (uint8_T)tmp_0;
@@ -350,10 +350,10 @@ static void DHM_Unfold(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
               }
 
               localDW->SL_e_TickCount = (uint8_T)tmp;
-              if (localDW->temporalCounter_i1 == (uint32_T)DHM_LinPwmStepTime_p
+              if (localDW->temporalCounter_i1 == (uint32_T)DHM_LinPwmStepTime_j
                   (30.0, rtu_SI_e_Volt100mV)) {
                 real_T tmp_0;
-                tmp_0 = DHM_LinPwmUp((real_T)*rty_SO_e_MotorPwm, DHM_GetPwm_j
+                tmp_0 = DHM_LinPwmUp((real_T)*rty_SO_e_MotorPwm, DHM_GetPwm_n
                                      (120.0, rtu_SI_e_Volt100mV) - 1.0, 30.0 -
                                      (real_T)localDW->SL_e_TickCount);
                 if (tmp_0 < 256.0) {
@@ -405,7 +405,7 @@ static void DHM_Unfold(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
 
               /*  软停(线性降压)  */
               localDW->SL_e_TickCount = 0U;
-              tmp_0 = DHM_GetPwm_j(120.0, rtu_SI_e_Volt100mV);
+              tmp_0 = DHM_GetPwm_n(120.0, rtu_SI_e_Volt100mV);
               if (tmp_0 < 256.0) {
                 if (tmp_0 >= 0.0) {
                   *rty_SO_e_MotorPwm = (uint8_T)tmp_0;
@@ -426,7 +426,7 @@ static void DHM_Unfold(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
               real_T tmp_0;
 
               /*  正常驱动完成  */
-              tmp_0 = DHM_GetPwm_j(70.0, rtu_SI_e_Volt100mV);
+              tmp_0 = DHM_GetPwm_n(70.0, rtu_SI_e_Volt100mV);
               if (tmp_0 < 256.0) {
                 if (tmp_0 >= 0.0) {
                   *rty_SO_e_MotorPwm = (uint8_T)tmp_0;
@@ -455,7 +455,7 @@ static void DHM_Unfold(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
               }
 
               localDW->SL_e_TickCount = (uint8_T)tmp;
-              tmp_0 = DHM_LinPwmDown((real_T)*rty_SO_e_MotorPwm, DHM_GetPwm_j
+              tmp_0 = DHM_LinPwmDown((real_T)*rty_SO_e_MotorPwm, DHM_GetPwm_n
                 (70.0, rtu_SI_e_Volt100mV) - 1.0, 35.0 - (real_T)
                 localDW->SL_e_TickCount);
               if (tmp_0 < 256.0) {
@@ -524,13 +524,13 @@ void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
   uint32_T tmp_4;
 
   /* Chart: '<S3>/FLDoorHndDriver' */
-  tmp_1 = (uint32_T)DHM_LinPwmStepTime_p(30.0, rtu_SI_e_Volt100mV);
+  tmp_1 = (uint32_T)DHM_LinPwmStepTime_j(30.0, rtu_SI_e_Volt100mV);
   if (localDW->temporalCounter_i1 < tmp_1) {
     localDW->temporalCounter_i1++;
   }
 
   /* Chart: '<S3>/FLDoorHndDriver' */
-  tmp_2 = (uint32_T)DHM_LinPwmStepTime_p(35.0, rtu_SI_e_Volt100mV);
+  tmp_2 = (uint32_T)DHM_LinPwmStepTime_j(35.0, rtu_SI_e_Volt100mV);
   if (localDW->temporalCounter_i2 < tmp_2) {
     localDW->temporalCounter_i2++;
   }
@@ -573,8 +573,8 @@ void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
         if ((localDW->SI_b_DoorHndUnfoldReq_prev !=
              localDW->SI_b_DoorHndUnfoldReq_start) &&
             localDW->SI_b_DoorHndUnfoldReq_start) {
-          if (localDW->is_Fold == DHM_IN_SoftStartStop_f) {
-            switch (localDW->is_SoftStartStop_m) {
+          if (localDW->is_Fold == DHM_IN_SoftStartStop_p) {
+            switch (localDW->is_SoftStartStop_g) {
              case DHM_IN_Step1:
               {
                 real_T tmp;
@@ -589,7 +589,7 @@ void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
                   *rty_SO_e_MotorPwm = MAX_uint8_T;
                 }
 
-                localDW->is_SoftStartStop_m = DHM_IN_NO_ACTIVE_CHILD;
+                localDW->is_SoftStartStop_g = DHM_IN_NO_ACTIVE_CHILD;
               }
               break;
 
@@ -607,12 +607,12 @@ void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
                   *rty_SO_e_MotorPwm = MAX_uint8_T;
                 }
 
-                localDW->is_SoftStartStop_m = DHM_IN_NO_ACTIVE_CHILD;
+                localDW->is_SoftStartStop_g = DHM_IN_NO_ACTIVE_CHILD;
               }
               break;
 
              default:
-              localDW->is_SoftStartStop_m = DHM_IN_NO_ACTIVE_CHILD;
+              localDW->is_SoftStartStop_g = DHM_IN_NO_ACTIVE_CHILD;
               break;
             }
 
@@ -629,8 +629,8 @@ void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
           *rty_SO_b_MotorA = false;
           *rty_SO_b_MotorB = false;
           *rty_SO_e_MotorPwm = 0U;
-        } else if (localDW->is_Fold == DHM_IN_SoftStartStop_f) {
-          switch (localDW->is_SoftStartStop_m) {
+        } else if (localDW->is_Fold == DHM_IN_SoftStartStop_p) {
+          switch (localDW->is_SoftStartStop_g) {
            case DHM_IN_Step1:
             {
               *rty_SO_e_MotorCmd = 2U;
@@ -647,7 +647,7 @@ void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
                   *rty_SO_e_MotorPwm = MAX_uint8_T;
                 }
 
-                localDW->is_SoftStartStop_m = DHM_IN_Step2;
+                localDW->is_SoftStartStop_g = DHM_IN_Step2;
                 localDW->temporalCounter_i5 = 0U;
 
                 /*  保持驱动至门把手折叠  */
@@ -685,7 +685,7 @@ void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
               *rty_SO_b_Error = true;
 
               /*  超时报错  */
-              localDW->is_SoftStartStop_m = DHM_IN_NO_ACTIVE_CHILD;
+              localDW->is_SoftStartStop_g = DHM_IN_NO_ACTIVE_CHILD;
               localDW->is_Fold = DHM_IN_NO_ACTIVE_CHILD;
               localDW->is_Drive = DHM_IN_Idle;
               *rty_SO_e_MotorCmd = 0U;
@@ -693,7 +693,7 @@ void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
               *rty_SO_b_MotorB = false;
               *rty_SO_e_MotorPwm = 0U;
             } else if (rtu_SI_m_DoorHndPosSts == Hnd_Fold) {
-              localDW->is_SoftStartStop_m = DHM_IN_Step3;
+              localDW->is_SoftStartStop_g = DHM_IN_Step3;
 
               /*  检测到门把手展开后进行过驱  */
             }
@@ -704,7 +704,7 @@ void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
               real_T tmp;
 
               /*  过驱时间:0ms  */
-              localDW->is_SoftStartStop_m = DHM_IN_Step4;
+              localDW->is_SoftStartStop_g = DHM_IN_Step4;
               localDW->temporalCounter_i4 = 0U;
               localDW->temporalCounter_i5 = 0U;
               localDW->SL_e_TickCount = 0U;
@@ -737,8 +737,8 @@ void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
                   *rty_SO_e_MotorPwm = MAX_uint8_T;
                 }
 
-                localDW->is_SoftStartStop_m = DHM_IN_NO_ACTIVE_CHILD;
-                localDW->is_Fold = DHM_IN_Stop_o;
+                localDW->is_SoftStartStop_g = DHM_IN_NO_ACTIVE_CHILD;
+                localDW->is_Fold = DHM_IN_Stop_i;
                 *rty_SO_e_MotorCmd = 0U;
                 *rty_SO_b_MotorA = false;
                 *rty_SO_b_MotorB = false;
@@ -793,8 +793,8 @@ void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
             localDW->SI_b_DoorHndFoldReq_start) {
           real_T tmp;
           localDW->is_Drive = DHM_IN_Fold;
-          localDW->is_Fold = DHM_IN_SoftStartStop_f;
-          localDW->is_SoftStartStop_m = DHM_IN_Step1;
+          localDW->is_Fold = DHM_IN_SoftStartStop_p;
+          localDW->is_SoftStartStop_g = DHM_IN_Step1;
           localDW->temporalCounter_i3 = 0U;
           localDW->temporalCounter_i5 = 0U;
           localDW->SL_e_TickCount = 0U;
@@ -826,7 +826,7 @@ void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
           *rty_SO_e_MotorCmd = 1U;
           *rty_SO_b_MotorA = true;
           *rty_SO_b_MotorB = false;
-          tmp = DHM_GetPwm_j(70.0, rtu_SI_e_Volt100mV);
+          tmp = DHM_GetPwm_n(70.0, rtu_SI_e_Volt100mV);
           if (tmp < 256.0) {
             if (tmp >= 0.0) {
               *rty_SO_e_MotorPwm = (uint8_T)tmp;
@@ -846,8 +846,8 @@ void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
         if (localDW->temporalCounter_i5 >= 10) {
           real_T tmp;
           localDW->is_Drive = DHM_IN_Fold;
-          localDW->is_Fold = DHM_IN_SoftStartStop_f;
-          localDW->is_SoftStartStop_m = DHM_IN_Step1;
+          localDW->is_Fold = DHM_IN_SoftStartStop_p;
+          localDW->is_SoftStartStop_g = DHM_IN_Step1;
           localDW->temporalCounter_i3 = 0U;
           localDW->temporalCounter_i5 = 0U;
           localDW->SL_e_TickCount = 0U;
@@ -884,7 +884,7 @@ void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
           *rty_SO_e_MotorCmd = 1U;
           *rty_SO_b_MotorA = true;
           *rty_SO_b_MotorB = false;
-          tmp = DHM_GetPwm_j(70.0, rtu_SI_e_Volt100mV);
+          tmp = DHM_GetPwm_n(70.0, rtu_SI_e_Volt100mV);
           if (tmp < 256.0) {
             if (tmp >= 0.0) {
               *rty_SO_e_MotorPwm = (uint8_T)tmp;
@@ -1057,14 +1057,14 @@ void DHM_FLDoorHndReq(Boolean rtu_SI_b_CrashOutpSts, Gear_Posn_E
     switch (localDW->is_Unfold) {
      case DHM_IN_CrashUnfoldReq:
       if (localDW->temporalCounter_i2 >= 5) {
-        localDW->is_Unfold = DHM_IN_Idle_g;
+        localDW->is_Unfold = DHM_IN_Idle_p;
         *rty_SO_b_HndUnfoldReq = false;
         localDW->SL_b_UnfoldReqTrig = ((rtu_SI_b_DoorOpen || (!rtu_SI_b_DoorLock))
           && localDW->SL_b_UnfoldReqTrig);
       }
       break;
 
-     case DHM_IN_Idle_g:
+     case DHM_IN_Idle_p:
       if ((((rtu_SI_e_EspVehSpd <= 20) && (!rtu_SI_b_EspVehSpdVld)) ||
            (rtu_SI_m_GearPosn == Gear_P) || rtu_SI_b_EspVehSpdVld) &&
           (rtu_SI_b_DoorOpen || (!rtu_SI_b_DoorLock)) &&
@@ -1099,7 +1099,7 @@ void DHM_FLDoorHndReq(Boolean rtu_SI_b_CrashOutpSts, Gear_Posn_E
 
      case DHM_IN_NormalUnfoldReq:
       if (localDW->temporalCounter_i2 >= 5) {
-        localDW->is_Unfold = DHM_IN_Idle_g;
+        localDW->is_Unfold = DHM_IN_Idle_p;
         *rty_SO_b_HndUnfoldReq = false;
         localDW->SL_b_UnfoldReqTrig = ((rtu_SI_b_DoorOpen || (!rtu_SI_b_DoorLock))
           && localDW->SL_b_UnfoldReqTrig);
@@ -1109,7 +1109,7 @@ void DHM_FLDoorHndReq(Boolean rtu_SI_b_CrashOutpSts, Gear_Posn_E
      default:
       /* case IN_SpecUnfoldReq: */
       if (localDW->temporalCounter_i2 >= 5) {
-        localDW->is_Unfold = DHM_IN_Idle_g;
+        localDW->is_Unfold = DHM_IN_Idle_p;
         *rty_SO_b_HndUnfoldReq = false;
         localDW->SL_b_UnfoldReqTrig = ((rtu_SI_b_DoorOpen || (!rtu_SI_b_DoorLock))
           && localDW->SL_b_UnfoldReqTrig);
@@ -1119,7 +1119,7 @@ void DHM_FLDoorHndReq(Boolean rtu_SI_b_CrashOutpSts, Gear_Posn_E
 
     if (localDW->is_Fold == DHM_IN_FoldReq) {
       if (localDW->temporalCounter_i3 >= 5) {
-        localDW->is_Fold = DHM_IN_Idle_g;
+        localDW->is_Fold = DHM_IN_Idle_p;
         *rty_SO_b_HndFoldReq = false;
         localDW->SL_b_FoldReqTrig = (((rtu_SI_e_EspVehSpd > 20) ||
           rtu_SI_b_EspVehSpdVld || (rtu_SI_m_DoorLockSts == Door_Lock)) &&
@@ -1160,11 +1160,11 @@ void DHM_FLDoorHndReq(Boolean rtu_SI_b_CrashOutpSts, Gear_Posn_E
       localDW->SL_e_antiPlayCount = (uint8_T)tmp;
     }
 
-    localDW->is_Unfold = DHM_IN_Idle_g;
+    localDW->is_Unfold = DHM_IN_Idle_p;
     *rty_SO_b_HndUnfoldReq = false;
     localDW->SL_b_UnfoldReqTrig = ((rtu_SI_b_DoorOpen || (!rtu_SI_b_DoorLock)) &&
       localDW->SL_b_UnfoldReqTrig);
-    localDW->is_Fold = DHM_IN_Idle_g;
+    localDW->is_Fold = DHM_IN_Idle_p;
     *rty_SO_b_HndFoldReq = false;
     localDW->SL_b_FoldReqTrig = (((rtu_SI_e_EspVehSpd > 20) ||
       rtu_SI_b_EspVehSpdVld || (rtu_SI_m_DoorLockSts == Door_Lock)) &&
@@ -1328,9 +1328,9 @@ void DHM_Step(void)                    /* Explicit Task: DHM_Step */
   HndPos_Sts_E SI_m_RRDoorHndPosSts;
   uint8_T SI_e_DrvDoorHndSet_prev;
   uint8_T SI_e_PassDoorHndSet_prev;
-  boolean_T SO_b_Error_g;
-  boolean_T SO_b_MotorA_i;
-  boolean_T SO_b_MotorB_b;
+  boolean_T SO_b_Error_bd;
+  boolean_T SO_b_MotorA_mw;
+  boolean_T SO_b_MotorB_d;
   Door_Sts_E rtb_DataTypeConversion1;
 
   /* RootInportFunctionCallGenerator generated from: '<Root>/DHM_Step' incorporates:
@@ -1505,17 +1505,17 @@ void DHM_Step(void)                    /* Explicit Task: DHM_Step */
                    DHM_U.VeOUT_DLK_BdcDrvrDoorLockSts_si, SI_m_FLDoorHndPosSts,
                    DHM_Y.VbOUT_DHM_BdcDrivDoorHandSetS_j,
                    DHM_U.VeINP_CAN_CdcDrivDoorHandSet_si,
-                   &DHM_B.SO_b_HndUnfoldReq_k, &DHM_B.SO_b_HndFoldReq_b,
+                   &DHM_B.SO_b_HndUnfoldReq_l, &DHM_B.SO_b_HndFoldReq_g,
                    &DHM_DW.sf_FLDoorHndReq);
 
   /* Chart: '<S3>/FLDoorHndDriver' incorporates:
    *  Inport: '<Root>/VeINP_HWA_Voltage_100mV_VeINP_HWA_Voltage_100mV'
    */
   DHM_FLDoorHndDriver(DHM_U.VeINP_HWA_Voltage_100mV_VeINP_H,
-                      SI_m_FLDoorHndPosSts, DHM_B.SO_b_HndFoldReq_b,
-                      DHM_B.SO_b_HndUnfoldReq_k, &SO_b_MotorA_i, &SO_b_MotorB_b,
-                      &DHM_B.SO_e_MotorCmd_p, &DHM_B.SO_e_MotorPwm_l,
-                      &SO_b_Error_g, &DHM_DW.sf_FLDoorHndDriver);
+                      SI_m_FLDoorHndPosSts, DHM_B.SO_b_HndFoldReq_g,
+                      DHM_B.SO_b_HndUnfoldReq_l, &SO_b_MotorA_mw, &SO_b_MotorB_d,
+                      &DHM_B.SO_e_MotorCmd_d, &DHM_B.SO_e_MotorPwm_h,
+                      &SO_b_Error_bd, &DHM_DW.sf_FLDoorHndDriver);
 
   /* DataTypeConversion: '<S3>/Data Type Conversion1' incorporates:
    *  Inport: '<Root>/VeOUT_DLK_BCMPassengerDoorLockStatus_sig_VeOUT_DLK_BCMPassengerDoorLockStatus_sig'
@@ -1540,17 +1540,17 @@ void DHM_Step(void)                    /* Explicit Task: DHM_Step */
                    rtb_DataTypeConversion1, SI_m_RLDoorHndPosSts,
                    DHM_Y.VbOUT_DHM_BdcPassDoorHandSetS_a,
                    DHM_U.VeINP_CAN_CdcPassDoorHandSet_si,
-                   &DHM_B.SO_b_HndUnfoldReq_l, &DHM_B.SO_b_HndFoldReq_m,
+                   &DHM_B.SO_b_HndUnfoldReq_c, &DHM_B.SO_b_HndFoldReq_j,
                    &DHM_DW.sf_RLDoorHndReq);
 
   /* Chart: '<S3>/RLDoorHndDriver' incorporates:
    *  Inport: '<Root>/VeINP_HWA_Voltage_100mV_VeINP_HWA_Voltage_100mV'
    */
   DHM_FLDoorHndDriver(DHM_U.VeINP_HWA_Voltage_100mV_VeINP_H,
-                      SI_m_RLDoorHndPosSts, DHM_B.SO_b_HndFoldReq_m,
-                      DHM_B.SO_b_HndUnfoldReq_l, &SO_b_MotorA_i, &SO_b_MotorB_b,
-                      &DHM_B.SO_e_MotorCmd_o, &DHM_B.SO_e_MotorPwm_h,
-                      &SO_b_Error_g, &DHM_DW.sf_RLDoorHndDriver);
+                      SI_m_RLDoorHndPosSts, DHM_B.SO_b_HndFoldReq_j,
+                      DHM_B.SO_b_HndUnfoldReq_c, &SO_b_MotorA_mw, &SO_b_MotorB_d,
+                      &DHM_B.SO_e_MotorCmd_l, &DHM_B.SO_e_MotorPwm_g,
+                      &SO_b_Error_bd, &DHM_DW.sf_RLDoorHndDriver);
 
   /* Chart: '<S3>/FRDoorHndReq' incorporates:
    *  Inport: '<Root>/VbINP_CAN_EspVehSpdVld_flg_VbINP_CAN_EspVehSpdVld_flg'
@@ -1570,17 +1570,17 @@ void DHM_Step(void)                    /* Explicit Task: DHM_Step */
                    rtb_DataTypeConversion1, SI_m_FRDoorHndPosSts,
                    DHM_Y.VbOUT_DHM_BdcPassDoorHandSetS_a,
                    DHM_U.VeINP_CAN_CdcPassDoorHandSet_si,
-                   &DHM_B.SO_b_HndUnfoldReq_p, &DHM_B.SO_b_HndFoldReq_o,
+                   &DHM_B.SO_b_HndUnfoldReq_g, &DHM_B.SO_b_HndFoldReq_n,
                    &DHM_DW.sf_FRDoorHndReq);
 
   /* Chart: '<S3>/FRDoorHndDriver' incorporates:
    *  Inport: '<Root>/VeINP_HWA_Voltage_100mV_VeINP_HWA_Voltage_100mV'
    */
   DHM_FLDoorHndDriver(DHM_U.VeINP_HWA_Voltage_100mV_VeINP_H,
-                      SI_m_FRDoorHndPosSts, DHM_B.SO_b_HndFoldReq_o,
-                      DHM_B.SO_b_HndUnfoldReq_p, &SO_b_MotorA_i, &SO_b_MotorB_b,
-                      &DHM_B.SO_e_MotorCmd_m, &DHM_B.SO_e_MotorPwm_c,
-                      &SO_b_Error_g, &DHM_DW.sf_FRDoorHndDriver);
+                      SI_m_FRDoorHndPosSts, DHM_B.SO_b_HndFoldReq_n,
+                      DHM_B.SO_b_HndUnfoldReq_g, &SO_b_MotorA_mw, &SO_b_MotorB_d,
+                      &DHM_B.SO_e_MotorCmd_p, &DHM_B.SO_e_MotorPwm_o,
+                      &SO_b_Error_bd, &DHM_DW.sf_FRDoorHndDriver);
 
   /* Chart: '<S3>/RRDoorHndReq' incorporates:
    *  Inport: '<Root>/VbINP_CAN_EspVehSpdVld_flg_VbINP_CAN_EspVehSpdVld_flg'
@@ -1608,8 +1608,8 @@ void DHM_Step(void)                    /* Explicit Task: DHM_Step */
    */
   DHM_FLDoorHndDriver(DHM_U.VeINP_HWA_Voltage_100mV_VeINP_H,
                       SI_m_RRDoorHndPosSts, DHM_B.SO_b_HndFoldReq,
-                      DHM_B.SO_b_HndUnfoldReq, &SO_b_MotorA_i, &SO_b_MotorB_b,
-                      &DHM_B.SO_e_MotorCmd, &DHM_B.SO_e_MotorPwm, &SO_b_Error_g,
+                      DHM_B.SO_b_HndUnfoldReq, &SO_b_MotorA_mw, &SO_b_MotorB_d,
+                      &DHM_B.SO_e_MotorCmd, &DHM_B.SO_e_MotorPwm, &SO_b_Error_bd,
                       &DHM_DW.sf_RRDoorHndDriver);
 
   /* Outport: '<Root>/VeOUT_DHM_BDCDrvrDoorHndSts_sig_VeOUT_DHM_BDCDrvrDoorHndSts_sig' incorporates:
@@ -1636,9 +1636,9 @@ void DHM_Step(void)                    /* Explicit Task: DHM_Step */
    *  Constant: '<S4>/Constant'
    *  RelationalOperator: '<S4>/Compare'
    */
-  if (DHM_B.SO_e_MotorCmd_p == 1) {
+  if (DHM_B.SO_e_MotorCmd_d == 1) {
     /* Outport: '<Root>/VeOUT_DHM_FLHadUnfold_pct_VeOUT_DHM_FLHadUnfold_pct' */
-    DHM_Y.VeOUT_DHM_FLHadUnfold_pct_VeOUT = DHM_B.SO_e_MotorPwm_l;
+    DHM_Y.VeOUT_DHM_FLHadUnfold_pct_VeOUT = DHM_B.SO_e_MotorPwm_h;
   } else {
     /* Outport: '<Root>/VeOUT_DHM_FLHadUnfold_pct_VeOUT_DHM_FLHadUnfold_pct' incorporates:
      *  Constant: '<S3>/Constant1'
@@ -1652,9 +1652,9 @@ void DHM_Step(void)                    /* Explicit Task: DHM_Step */
    *  Constant: '<S6>/Constant'
    *  RelationalOperator: '<S6>/Compare'
    */
-  if (DHM_B.SO_e_MotorCmd_o == 1) {
+  if (DHM_B.SO_e_MotorCmd_l == 1) {
     /* Outport: '<Root>/VeOUT_DHM_RLHadUnfold_pct_VeOUT_DHM_RLHadUnfold_pct' */
-    DHM_Y.VeOUT_DHM_RLHadUnfold_pct_VeOUT = DHM_B.SO_e_MotorPwm_h;
+    DHM_Y.VeOUT_DHM_RLHadUnfold_pct_VeOUT = DHM_B.SO_e_MotorPwm_g;
   } else {
     /* Outport: '<Root>/VeOUT_DHM_RLHadUnfold_pct_VeOUT_DHM_RLHadUnfold_pct' incorporates:
      *  Constant: '<S3>/Constant3'
@@ -1668,9 +1668,9 @@ void DHM_Step(void)                    /* Explicit Task: DHM_Step */
    *  Constant: '<S7>/Constant'
    *  RelationalOperator: '<S7>/Compare'
    */
-  if (DHM_B.SO_e_MotorCmd_o == 2) {
+  if (DHM_B.SO_e_MotorCmd_l == 2) {
     /* Outport: '<Root>/VeOUT_DHM_RLHadFold_pct_VeOUT_DHM_RLHadFold_pct' */
-    DHM_Y.VeOUT_DHM_RLHadFold_pct_VeOUT_D = DHM_B.SO_e_MotorPwm_h;
+    DHM_Y.VeOUT_DHM_RLHadFold_pct_VeOUT_D = DHM_B.SO_e_MotorPwm_g;
   } else {
     /* Outport: '<Root>/VeOUT_DHM_RLHadFold_pct_VeOUT_DHM_RLHadFold_pct' incorporates:
      *  Constant: '<S3>/Constant4'
@@ -1684,9 +1684,9 @@ void DHM_Step(void)                    /* Explicit Task: DHM_Step */
    *  Constant: '<S8>/Constant'
    *  RelationalOperator: '<S8>/Compare'
    */
-  if (DHM_B.SO_e_MotorCmd_m == 1) {
+  if (DHM_B.SO_e_MotorCmd_p == 1) {
     /* Outport: '<Root>/VeOUT_DHM_FRHandleUnfold_pct_VeOUT_DHM_FRHandleUnfold_pct' */
-    DHM_Y.VeOUT_DHM_FRHandleUnfold_pct_Ve = DHM_B.SO_e_MotorPwm_c;
+    DHM_Y.VeOUT_DHM_FRHandleUnfold_pct_Ve = DHM_B.SO_e_MotorPwm_o;
   } else {
     /* Outport: '<Root>/VeOUT_DHM_FRHandleUnfold_pct_VeOUT_DHM_FRHandleUnfold_pct' incorporates:
      *  Constant: '<S3>/Constant5'
@@ -1700,9 +1700,9 @@ void DHM_Step(void)                    /* Explicit Task: DHM_Step */
    *  Constant: '<S9>/Constant'
    *  RelationalOperator: '<S9>/Compare'
    */
-  if (DHM_B.SO_e_MotorCmd_m == 2) {
+  if (DHM_B.SO_e_MotorCmd_p == 2) {
     /* Outport: '<Root>/VeOUT_DHM_FRHandleFold_pct_VeOUT_DHM_FRHandleFold_pct' */
-    DHM_Y.VeOUT_DHM_FRHandleFold_pct_VeOU = DHM_B.SO_e_MotorPwm_c;
+    DHM_Y.VeOUT_DHM_FRHandleFold_pct_VeOU = DHM_B.SO_e_MotorPwm_o;
   } else {
     /* Outport: '<Root>/VeOUT_DHM_FRHandleFold_pct_VeOUT_DHM_FRHandleFold_pct' incorporates:
      *  Constant: '<S3>/Constant6'
@@ -1732,9 +1732,9 @@ void DHM_Step(void)                    /* Explicit Task: DHM_Step */
    *  Constant: '<S5>/Constant'
    *  RelationalOperator: '<S5>/Compare'
    */
-  if (DHM_B.SO_e_MotorCmd_p == 2) {
+  if (DHM_B.SO_e_MotorCmd_d == 2) {
     /* Outport: '<Root>/VeOUT_DHM_FLHadFold_pct_VeOUT_DHM_FLHadFold_pct' */
-    DHM_Y.VeOUT_DHM_FLHadFold_pct_VeOUT_D = DHM_B.SO_e_MotorPwm_l;
+    DHM_Y.VeOUT_DHM_FLHadFold_pct_VeOUT_D = DHM_B.SO_e_MotorPwm_h;
   } else {
     /* Outport: '<Root>/VeOUT_DHM_FLHadFold_pct_VeOUT_DHM_FLHadFold_pct' incorporates:
      *  Constant: '<S3>/Constant2'
@@ -1761,18 +1761,6 @@ void DHM_Step(void)                    /* Explicit Task: DHM_Step */
   /* End of Switch: '<S3>/Switch7' */
   /* End of Outputs for RootInportFunctionCallGenerator generated from: '<Root>/DHM_Step' */
 
-  /* Outport: '<Root>/VbOUT_DHM_BdcDrivDoorHandSetSts_flg_VbOUT_DHM_BdcDrivDoorHandSetSts_flg' */
-  DHM_Y.VbOUT_DHM_BdcDrivDoorHandSetSts = false;
-
-  /* Outport: '<Root>/VbOUT_DHM_BdcPassDoorHandSetSts_flg_VbOUT_DHM_BdcPassDoorHandSetSts_flg' */
-  DHM_Y.VbOUT_DHM_BdcPassDoorHandSetSts = false;
-
-  /* Outport: '<Root>/VbOUT_DHM_RLDoorHandSetSts_flg_VbOUT_DHM_RLDoorHandSetSts_flg' */
-  DHM_Y.VbOUT_DHM_RLDoorHandSetSts_flg_ = false;
-
-  /* Outport: '<Root>/VbOUT_DHM_RRDoorHandSetSts_flg_VbOUT_DHM_RRDoorHandSetSts_flg' */
-  DHM_Y.VbOUT_DHM_RRDoorHandSetSts_flg_ = false;
-
   /* Outport: '<Root>/VbOUT_DHM_DrivDoorHandErrSts_flg_VbOUT_DHM_DrivDoorHandErrSts_flg' */
   DHM_Y.VbOUT_DHM_DrivDoorHandErrSts_fl = false;
 
@@ -1790,38 +1778,38 @@ void DHM_Step(void)                    /* Explicit Task: DHM_Step */
 void DHM_initialize(void)
 {
   {
-    boolean_T SO_b_Error_g;
-    boolean_T SO_b_MotorA_i;
-    boolean_T SO_b_MotorB_b;
+    boolean_T SO_b_Error_bd;
+    boolean_T SO_b_MotorA_mw;
+    boolean_T SO_b_MotorB_d;
 
     /* SystemInitialize for RootInportFunctionCallGenerator generated from: '<Root>/DHM_Step' incorporates:
      *  SubSystem: '<Root>/DHM_Step_sys'
      */
 
     /* SystemInitialize for Chart: '<S3>/FLDoorHndDriver' */
-    DHM_FLDoorHndDriver_Init(&SO_b_MotorA_i, &SO_b_MotorB_b,
-      &DHM_B.SO_e_MotorCmd_p, &DHM_B.SO_e_MotorPwm_l, &SO_b_Error_g);
+    DHM_FLDoorHndDriver_Init(&SO_b_MotorA_mw, &SO_b_MotorB_d,
+      &DHM_B.SO_e_MotorCmd_d, &DHM_B.SO_e_MotorPwm_h, &SO_b_Error_bd);
 
     /* SystemInitialize for Chart: '<S3>/FLDoorHndReq' */
-    DHM_FLDoorHndReq_Init(&DHM_B.SO_b_HndUnfoldReq_k, &DHM_B.SO_b_HndFoldReq_b);
+    DHM_FLDoorHndReq_Init(&DHM_B.SO_b_HndUnfoldReq_l, &DHM_B.SO_b_HndFoldReq_g);
 
     /* SystemInitialize for Chart: '<S3>/FRDoorHndDriver' */
-    DHM_FLDoorHndDriver_Init(&SO_b_MotorA_i, &SO_b_MotorB_b,
-      &DHM_B.SO_e_MotorCmd_m, &DHM_B.SO_e_MotorPwm_c, &SO_b_Error_g);
+    DHM_FLDoorHndDriver_Init(&SO_b_MotorA_mw, &SO_b_MotorB_d,
+      &DHM_B.SO_e_MotorCmd_p, &DHM_B.SO_e_MotorPwm_o, &SO_b_Error_bd);
 
     /* SystemInitialize for Chart: '<S3>/FRDoorHndReq' */
-    DHM_FLDoorHndReq_Init(&DHM_B.SO_b_HndUnfoldReq_p, &DHM_B.SO_b_HndFoldReq_o);
+    DHM_FLDoorHndReq_Init(&DHM_B.SO_b_HndUnfoldReq_g, &DHM_B.SO_b_HndFoldReq_n);
 
     /* SystemInitialize for Chart: '<S3>/RLDoorHndDriver' */
-    DHM_FLDoorHndDriver_Init(&SO_b_MotorA_i, &SO_b_MotorB_b,
-      &DHM_B.SO_e_MotorCmd_o, &DHM_B.SO_e_MotorPwm_h, &SO_b_Error_g);
+    DHM_FLDoorHndDriver_Init(&SO_b_MotorA_mw, &SO_b_MotorB_d,
+      &DHM_B.SO_e_MotorCmd_l, &DHM_B.SO_e_MotorPwm_g, &SO_b_Error_bd);
 
     /* SystemInitialize for Chart: '<S3>/RLDoorHndReq' */
-    DHM_FLDoorHndReq_Init(&DHM_B.SO_b_HndUnfoldReq_l, &DHM_B.SO_b_HndFoldReq_m);
+    DHM_FLDoorHndReq_Init(&DHM_B.SO_b_HndUnfoldReq_c, &DHM_B.SO_b_HndFoldReq_j);
 
     /* SystemInitialize for Chart: '<S3>/RRDoorHndDriver' */
-    DHM_FLDoorHndDriver_Init(&SO_b_MotorA_i, &SO_b_MotorB_b,
-      &DHM_B.SO_e_MotorCmd, &DHM_B.SO_e_MotorPwm, &SO_b_Error_g);
+    DHM_FLDoorHndDriver_Init(&SO_b_MotorA_mw, &SO_b_MotorB_d,
+      &DHM_B.SO_e_MotorCmd, &DHM_B.SO_e_MotorPwm, &SO_b_Error_bd);
 
     /* SystemInitialize for Chart: '<S3>/RRDoorHndReq' */
     DHM_FLDoorHndReq_Init(&DHM_B.SO_b_HndUnfoldReq, &DHM_B.SO_b_HndFoldReq);
