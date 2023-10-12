@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'DHM'.
  *
- * Model version                  : 1.15
+ * Model version                  : 1.18
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Thu Oct 12 09:08:10 2023
+ * C/C++ source code generated on : Thu Oct 12 10:54:55 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -354,8 +354,8 @@ static void DHM_Unfold(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
                   (30.0, rtu_SI_e_Volt100mV)) {
                 real_T tmp_0;
                 tmp_0 = DHM_LinPwmUp((real_T)*rty_SO_e_MotorPwm, DHM_GetPwm_n
-                                     (120.0, rtu_SI_e_Volt100mV) - 1.0, 30.0 -
-                                     (real_T)localDW->SL_e_TickCount);
+                                     (120.0, rtu_SI_e_Volt100mV), 30.0 - (real_T)
+                                     localDW->SL_e_TickCount);
                 if (tmp_0 < 256.0) {
                   if (tmp_0 >= 0.0) {
                     *rty_SO_e_MotorPwm = (uint8_T)tmp_0;
@@ -456,7 +456,7 @@ static void DHM_Unfold(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
 
               localDW->SL_e_TickCount = (uint8_T)tmp;
               tmp_0 = DHM_LinPwmDown((real_T)*rty_SO_e_MotorPwm, DHM_GetPwm_n
-                (70.0, rtu_SI_e_Volt100mV) - 1.0, 35.0 - (real_T)
+                (70.0, rtu_SI_e_Volt100mV), 35.0 - (real_T)
                 localDW->SL_e_TickCount);
               if (tmp_0 < 256.0) {
                 if (tmp_0 >= 0.0) {
@@ -843,7 +843,7 @@ void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
      case DHM_IN_Interrupt1:
       {
         *rty_SO_e_MotorCmd = 0U;
-        if (localDW->temporalCounter_i5 >= 10) {
+        if (localDW->temporalCounter_i5 >= 20) {
           real_T tmp;
           localDW->is_Drive = DHM_IN_Fold;
           localDW->is_Fold = DHM_IN_SoftStartStop_p;
@@ -871,7 +871,7 @@ void DHM_FLDoorHndDriver(UInt8 rtu_SI_e_Volt100mV, HndPos_Sts_E
      case DHM_IN_Interrupt2:
       {
         *rty_SO_e_MotorCmd = 0U;
-        if (localDW->temporalCounter_i5 >= 10) {
+        if (localDW->temporalCounter_i5 >= 20) {
           real_T tmp;
           localDW->is_Drive = DHM_IN_Unfold;
           localDW->is_Unfold = DHM_IN_SoftStartStop;
