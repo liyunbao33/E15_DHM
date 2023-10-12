@@ -3,7 +3,7 @@
 Auto generated XML Component Description for model DHM
 Model version                : 1.20
 Simulink Coder version       : Simulink Coder 9.7 (R2022a) 13-Nov-2021
-XML source code generated on : Thu Oct 12 11:01:24 2023
+XML source code generated on : Thu Oct 12 11:05:03 2023
 Model Checksum               : 68985963 4242191747 991037828 1576450070
 -->
 <AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-3-1.xsd">
