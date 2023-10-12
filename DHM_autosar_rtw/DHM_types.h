@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'DHM'.
  *
- * Model version                  : 1.20
+ * Model version                  : 1.27
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Thu Oct 12 11:01:15 2023
+ * C/C++ source code generated on : Thu Oct 12 18:11:42 2023
  *
  * Target selection: autosar.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)

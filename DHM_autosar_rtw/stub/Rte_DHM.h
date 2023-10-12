@@ -7,7 +7,7 @@
    This file is generated for:
    Atomic software component:  "DHM"
    ARXML schema: "4.3"
-   File generated on: "12-Oct-2023 11:01:21"  */
+   File generated on: "12-Oct-2023 18:11:54"  */
 
 #ifndef Rte_DHM_h
 #define Rte_DHM_h
@@ -15,6 +15,54 @@
 #include "Compiler.h"
 
 /* Data access functions */
+#define Rte_Write_VbOUT_DHM_DrivDoorHandErrSts_flg_VbOUT_DHM_DrivDoorHandErrSts_flg Rte_Write_DHM_VbOUT_DHM_DrivDoorHandErrSts_flg_VbOUT_DHM_DrivDoorHandErrSts_flg
+
+Std_ReturnType
+  Rte_Write_VbOUT_DHM_DrivDoorHandErrSts_flg_VbOUT_DHM_DrivDoorHandErrSts_flg
+  (Boolean u);
+
+#define Rte_Invalidate_VbOUT_DHM_DrivDoorHandErrSts_flg_VbOUT_DHM_DrivDoorHandErrSts_flg Rte_Invalidate_DHM_VbOUT_DHM_DrivDoorHandErrSts_flg_VbOUT_DHM_DrivDoorHandErrSts_flg
+
+Std_ReturnType
+  Rte_Invalidate_VbOUT_DHM_DrivDoorHandErrSts_flg_VbOUT_DHM_DrivDoorHandErrSts_flg
+  (void);
+
+#define Rte_Write_VbOUT_DHM_PassDoorHandErrSts_flg_VbOUT_DHM_PassDoorHandErrSts_flg Rte_Write_DHM_VbOUT_DHM_PassDoorHandErrSts_flg_VbOUT_DHM_PassDoorHandErrSts_flg
+
+Std_ReturnType
+  Rte_Write_VbOUT_DHM_PassDoorHandErrSts_flg_VbOUT_DHM_PassDoorHandErrSts_flg
+  (Boolean u);
+
+#define Rte_Invalidate_VbOUT_DHM_PassDoorHandErrSts_flg_VbOUT_DHM_PassDoorHandErrSts_flg Rte_Invalidate_DHM_VbOUT_DHM_PassDoorHandErrSts_flg_VbOUT_DHM_PassDoorHandErrSts_flg
+
+Std_ReturnType
+  Rte_Invalidate_VbOUT_DHM_PassDoorHandErrSts_flg_VbOUT_DHM_PassDoorHandErrSts_flg
+  (void);
+
+#define Rte_Write_VbOUT_DHM_RLDoorHandErrSts_flg_VbOUT_DHM_RLDoorHandErrSts_flg Rte_Write_DHM_VbOUT_DHM_RLDoorHandErrSts_flg_VbOUT_DHM_RLDoorHandErrSts_flg
+
+Std_ReturnType
+  Rte_Write_VbOUT_DHM_RLDoorHandErrSts_flg_VbOUT_DHM_RLDoorHandErrSts_flg
+  (Boolean u);
+
+#define Rte_Invalidate_VbOUT_DHM_RLDoorHandErrSts_flg_VbOUT_DHM_RLDoorHandErrSts_flg Rte_Invalidate_DHM_VbOUT_DHM_RLDoorHandErrSts_flg_VbOUT_DHM_RLDoorHandErrSts_flg
+
+Std_ReturnType
+  Rte_Invalidate_VbOUT_DHM_RLDoorHandErrSts_flg_VbOUT_DHM_RLDoorHandErrSts_flg
+  (void);
+
+#define Rte_Write_VbOUT_DHM_RRDoorHandErrSts_flg_VbOUT_DHM_RRDoorHandErrSts_flg Rte_Write_DHM_VbOUT_DHM_RRDoorHandErrSts_flg_VbOUT_DHM_RRDoorHandErrSts_flg
+
+Std_ReturnType
+  Rte_Write_VbOUT_DHM_RRDoorHandErrSts_flg_VbOUT_DHM_RRDoorHandErrSts_flg
+  (Boolean u);
+
+#define Rte_Invalidate_VbOUT_DHM_RRDoorHandErrSts_flg_VbOUT_DHM_RRDoorHandErrSts_flg Rte_Invalidate_DHM_VbOUT_DHM_RRDoorHandErrSts_flg_VbOUT_DHM_RRDoorHandErrSts_flg
+
+Std_ReturnType
+  Rte_Invalidate_VbOUT_DHM_RRDoorHandErrSts_flg_VbOUT_DHM_RRDoorHandErrSts_flg
+  (void);
+
 #define Rte_Read_VbINP_CAN_EspVehSpdVld_flg_VbINP_CAN_EspVehSpdVld_flg Rte_Read_DHM_VbINP_CAN_EspVehSpdVld_flg_VbINP_CAN_EspVehSpdVld_flg
 
 Std_ReturnType Rte_Read_VbINP_CAN_EspVehSpdVld_flg_VbINP_CAN_EspVehSpdVld_flg

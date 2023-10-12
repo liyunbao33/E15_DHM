@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'DHM'.
  *
- * Model version                  : 1.20
+ * Model version                  : 1.27
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Thu Oct 12 11:01:15 2023
+ * C/C++ source code generated on : Thu Oct 12 18:11:42 2023
  *
  * Target selection: autosar.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -39,6 +39,7 @@ typedef struct {
   uint8 is_SoftStartStop_g;            /* '<S3>/FLDoorHndDriver' */
   uint8 SL_e_CycleCount;               /* '<S3>/FLDoorHndDriver' */
   uint8 SL_e_TickCount;                /* '<S3>/FLDoorHndDriver' */
+  uint8 SL_e_IceBrkCount;              /* '<S3>/FLDoorHndDriver' */
   uint8 temporalCounter_i5;            /* '<S3>/FLDoorHndDriver' */
   boolean SI_b_DoorHndUnfoldReq_prev;  /* '<S3>/FLDoorHndDriver' */
   boolean SI_b_DoorHndUnfoldReq_start; /* '<S3>/FLDoorHndDriver' */
@@ -83,12 +84,16 @@ typedef struct tag_B_DHM_T {
   uint8 SO_e_MotorPwm_h;               /* '<S3>/FLDoorHndDriver' */
   boolean SO_b_HndUnfoldReq;           /* '<S3>/RRDoorHndReq' */
   boolean SO_b_HndFoldReq;             /* '<S3>/RRDoorHndReq' */
+  boolean SO_b_Error;                  /* '<S3>/RRDoorHndDriver' */
   boolean SO_b_HndUnfoldReq_c;         /* '<S3>/RLDoorHndReq' */
   boolean SO_b_HndFoldReq_j;           /* '<S3>/RLDoorHndReq' */
+  boolean SO_b_Error_b;                /* '<S3>/RLDoorHndDriver' */
   boolean SO_b_HndUnfoldReq_g;         /* '<S3>/FRDoorHndReq' */
   boolean SO_b_HndFoldReq_n;           /* '<S3>/FRDoorHndReq' */
+  boolean SO_b_Error_j;                /* '<S3>/FRDoorHndDriver' */
   boolean SO_b_HndUnfoldReq_l;         /* '<S3>/FLDoorHndReq' */
   boolean SO_b_HndFoldReq_g;           /* '<S3>/FLDoorHndReq' */
+  boolean SO_b_Error_bd;               /* '<S3>/FLDoorHndDriver' */
   boolean SO_b_DrvDoorHndSetSts;       /* '<S3>/DoorHndSetSts' */
   boolean SO_b_DrvDoorHndBtnSetSts;    /* '<S3>/DoorHndSetSts' */
   boolean SO_b_PassDoorHndSetSts;      /* '<S3>/DoorHndSetSts' */
