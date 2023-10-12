@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'DHM'.
  *
- * Model version                  : 1.17
+ * Model version                  : 1.20
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Thu Oct 12 09:30:35 2023
+ * C/C++ source code generated on : Thu Oct 12 11:01:15 2023
  *
  * Target selection: autosar.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -1311,7 +1311,7 @@ void DHM_Step(void)                    /* Explicit Task: DHM_Step */
   /* DataStoreWrite: '<S3>/Data Store Write' incorporates:
    *  Constant: '<S3>/Constant'
    */
-  DHM_DW.E15_DHM = 3U;
+  DHM_DW.E15_DHM = 4U;
 
   /* SignalConversion generated from: '<S2>/VeINP_HWA_Voltage_100mV_VeINP_HWA_Voltage_100mV_read' incorporates:
    *  Inport: '<Root>/VeINP_HWA_Voltage_100mV_VeINP_HWA_Voltage_100mV'
